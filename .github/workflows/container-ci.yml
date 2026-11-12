@@ -94,22 +94,36 @@ jobs:
           push: true
           tags: ${{ vars.GCP_REGION }}-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/northgate/northgate-chase:${{ github.sha }}
 
+      - name: Render Cloud Run service configuration
+        env:
+          IMAGE: ${{ vars.GCP_REGION }}-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/northgate/northgate-chase:${{ github.sha }}
+        run: |
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+
+          template = Path("deploy/cloud-run.yaml").read_text()
+          rendered = template.replace("__IMAGE__", os.environ["IMAGE"])
+          rendered = rendered.replace(
+              "__RUNTIME_SERVICE_ACCOUNT__",
+              os.environ["RUNTIME_SERVICE_ACCOUNT"],
+          )
+          if "__IMAGE__" in rendered or "__RUNTIME_SERVICE_ACCOUNT__" in rendered:
+              raise SystemExit("Cloud Run configuration contains an unresolved placeholder.")
+          Path(os.environ["RUNNER_TEMP"], "cloud-run.yaml").write_text(rendered)
+          PY
+
       - name: Deploy public synthetic-data preview
         run: |
-          gcloud run deploy northgate-chase \
+          gcloud run services replace "${RUNNER_TEMP}/cloud-run.yaml" \
+            --project="$PROJECT_ID" \
+            --region="$REGION"
+          gcloud run services add-iam-policy-binding northgate-chase \
             --project="$PROJECT_ID" \
             --region="$REGION" \
-            --platform=managed \
-            --image="${REGION}-docker.pkg.dev/${PROJECT_ID}/northgate/northgate-chase:${GITHUB_SHA}" \
-            --port=8080 \
-            --memory=1Gi \
-            --cpu=1 \
-            --max=1 \
-            --min=0 \
-            --concurrency=1 \
-            --service-account="$RUNTIME_SERVICE_ACCOUNT" \
-            --allow-unauthenticated \
-            --set-env-vars=NG_OVERDUE_DAYS=7
+            --member="allUsers" \
+            --role="roles/run.invoker" \
+            --quiet
 
       - name: Report deployment URL
         run: |

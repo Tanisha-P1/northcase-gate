@@ -4,6 +4,7 @@ This guide configures GitHub Actions to publish the Docker image to Artifact Reg
 
 ## Important preview limits
 
+- The Cloud Run service configuration is in `deploy/cloud-run.yaml`. GitHub Actions substitutes the built image and runtime service account before deploying it.
 - The Cloud Run URL is public. Anyone with the URL can use the demo.
 - The app uses synthetic demo records and its role selector is not authentication. Do not enter real customer, employee, or contact data.
 - SQLite is stored in `/tmp` inside the container. Updates can be lost when Cloud Run restarts or replaces the instance. The deployment limits the service to one instance, but this does not make the database durable.
