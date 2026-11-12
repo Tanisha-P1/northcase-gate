@@ -13,11 +13,11 @@ This guide configures GitHub Actions to publish the Docker image to Artifact Reg
 
 ## 1. Prepare the Google Cloud project
 
-Open **Cloud Shell** from the Google Cloud Console for project `slabspro-slabsuser33`. These commands use `us-central1`; change `REGION` only if you choose a different supported region.
+Open **Cloud Shell** from the Google Cloud Console for project `slabspro-slabsuser33`. The organization policy allows `asia-south1`, so use that region for Artifact Registry and Cloud Run.
 
 ```bash
 export PROJECT_ID="slabspro-slabsuser33"
-export REGION="us-central1"
+export REGION="asia-south1"
 export REPOSITORY="Tanisha-P1/northcase-gate"
 export POOL_ID="github-actions"
 export PROVIDER_ID="northcase-gate"
@@ -76,7 +76,21 @@ gcloud iam service-accounts add-iam-policy-binding "$DEPLOYER_SA" \
   --member="principalSet://iam.googleapis.com/projects/${PROJECT_NUMBER}/locations/global/workloadIdentityPools/${POOL_ID}/attribute.repository/${REPOSITORY}"
 ```
 
-These are one-time setup commands. The account running them needs permission to enable APIs, create service accounts and Workload Identity resources, and grant the listed IAM roles. If your account is managed by an organization, ask its Cloud administrator to run the setup or grant those permissions. Google Cloud may require billing to be enabled for the project.
+These are one-time setup commands. In this project, the two service accounts were already created by an earlier attempt:
+
+- `northcase-github-deployer@slabspro-slabsuser33.iam.gserviceaccount.com`
+- `northcase-cloud-run@slabspro-slabsuser33.iam.gserviceaccount.com`
+
+Do not run the service-account creation commands again. The earlier Artifact Registry creation failed because it used `us-central1`; if needed, create the repository in the allowed region with:
+
+```bash
+gcloud artifacts repositories create northgate \
+  --location="asia-south1" \
+  --repository-format=docker \
+  --description="Northgate Chase preview images"
+```
+
+The account running setup needs permission to enable APIs, grant project and service-account IAM policies, and create Workload Identity resources. Earlier attempts reported missing IAM permissions for these operations. Changing regions does **not** resolve those permission errors; ask your Google Cloud administrator to complete the remaining IAM and Workload Identity setup or grant the required permissions. Do not retry commands that failed with permission denied until access is fixed. Google Cloud may require billing to be enabled for the project.
 
 Print the project number and exact provider name for the GitHub variables:
 
@@ -98,7 +112,7 @@ In the GitHub repository, open **Settings → Secrets and variables → Actions 
 | Variable | Value |
 |---|---|
 | `GCP_PROJECT_ID` | `slabspro-slabsuser33` |
-| `GCP_REGION` | `us-central1` |
+| `GCP_REGION` | `asia-south1` |
 | `GCP_WORKLOAD_IDENTITY_PROVIDER` | The Workload Identity provider printed by the Cloud Shell commands above |
 | `GCP_DEPLOYER_SERVICE_ACCOUNT` | The deployer service account printed by the Cloud Shell commands above |
 | `GCP_RUNTIME_SERVICE_ACCOUNT` | The runtime service account printed by the Cloud Shell commands above |
