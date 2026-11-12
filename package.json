@@ -1,0 +1,22 @@
+{
+  "name": "northgate-chase",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n api,ai,web \"npm:dev:api\" \"npm:dev:ai\" \"npm:dev:web\"",
+    "dev:api": "node --env-file-if-exists=.env --watch server/index.mjs",
+    "dev:ai": "python -m uvicorn ai_service.main:app --host 127.0.0.1 --port 8000 --reload",
+    "dev:web": "npm run dev --workspace frontend",
+    "build": "npm run build --workspace frontend",
+    "start": "node --env-file-if-exists=.env server/index.mjs",
+    "test": "node --test server/*.test.mjs",
+    "test:ai": "python -m unittest discover -s ai_service -p \"test_*.py\"",
+    "lint": "npm run lint --workspace frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

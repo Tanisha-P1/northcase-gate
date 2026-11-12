@@ -1,0 +1,15 @@
+.env
+.env.*
+!.env.example
+node_modules/
+frontend/dist/
+frontend/.vite/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.py[cod]

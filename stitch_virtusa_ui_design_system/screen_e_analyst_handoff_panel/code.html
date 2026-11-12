@@ -1,0 +1,524 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Northgate Chase - Analyst Handoff Panel</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration Verbatim -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "outline-variant": "#c6c6ce",
+            "background": "#faf8ff",
+            "outline": "#76767e",
+            "error-container": "#ffdad6",
+            "surface-container-lowest": "#ffffff",
+            "on-background": "#131b2e",
+            "primary-fixed": "#dbe1ff",
+            "secondary": "#0051d5",
+            "secondary-fixed": "#dbe1ff",
+            "secondary-container": "#316bf3",
+            "on-secondary": "#ffffff",
+            "surface-tint": "#545d7c",
+            "primary-fixed-dim": "#bdc5e9",
+            "surface-dim": "#d2d9f4",
+            "inverse-on-surface": "#eef0ff",
+            "on-secondary-fixed-variant": "#003ea8",
+            "surface-container": "#eaedff",
+            "on-tertiary": "#ffffff",
+            "on-error-container": "#93000a",
+            "surface-container-high": "#e2e7ff",
+            "surface-variant": "#dae2fd",
+            "surface-container-low": "#f2f3ff",
+            "inverse-primary": "#bdc5e9",
+            "on-secondary-container": "#fefcff",
+            "on-tertiary-fixed": "#002114",
+            "on-secondary-fixed": "#00174b",
+            "on-error": "#ffffff",
+            "secondary-fixed-dim": "#b4c5ff",
+            "on-primary-container": "#838cae",
+            "inverse-surface": "#283044",
+            "tertiary": "#00160c",
+            "tertiary-fixed-dim": "#68dba9",
+            "primary-container": "#1c2541",
+            "surface": "#faf8ff",
+            "error": "#ba1a1a",
+            "on-surface-variant": "#45464d",
+            "surface-container-highest": "#dae2fd",
+            "on-surface": "#131b2e",
+            "on-primary": "#ffffff",
+            "on-tertiary-fixed-variant": "#005137",
+            "on-primary-fixed-variant": "#3d4664",
+            "primary": "#06102b",
+            "on-primary-fixed": "#111a36",
+            "tertiary-fixed": "#85f8c4",
+            "on-tertiary-container": "#1fa072",
+            "surface-bright": "#faf8ff",
+            "tertiary-container": "#002d1d"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "gutter-desktop": "1.5rem",
+            "margin-desktop": "2rem",
+            "space-sm": "0.5rem",
+            "space-md": "0.75rem",
+            "space-lg": "1rem",
+            "space-xl": "1.5rem",
+            "margin": "1rem",
+            "space-xs": "0.25rem",
+            "gutter": "1rem"
+          },
+          "fontFamily": {
+            "label-sm": ["Inter"],
+            "headline-sm": ["Inter"],
+            "label-md": ["Inter"],
+            "tabular-numeric": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "body-lg": ["Inter"],
+            "headline-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "title-md": ["Inter"],
+            "headline-md": ["Inter"],
+            "body-sm": ["Inter"]
+          },
+          "fontSize": {
+            "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.5rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.03em", "fontWeight": "600" }],
+            "tabular-numeric": ["0.8125rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "500" }],
+            "headline-lg-mobile": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "body-lg": ["0.9375rem", { "lineHeight": "1.5rem", "fontWeight": "400" }],
+            "headline-lg": ["2rem", { "lineHeight": "2.5rem", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-md": ["0.8125rem", { "lineHeight": "1.25rem", "fontWeight": "400" }],
+            "title-md": ["0.9375rem", { "lineHeight": "1.375rem", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "headline-md": ["1.375rem", { "lineHeight": "1.75rem", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "body-sm": ["0.75rem", { "lineHeight": "1.125rem", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Technical scrollbars and material icon styling */
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      font-size: 1.125rem;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 2px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased min-h-screen overflow-x-hidden selection:bg-primary-fixed selection:text-primary">
+<!-- TOP APP BAR (Shared Component: TopNavBar) -->
+<header class="bg-primary text-on-primary border-b border-outline/30 sticky top-0 z-50 flex justify-between items-center w-full px-6 h-14">
+<!-- Brand / Product Identification & Global Search -->
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-fixed text-xl" data-icon="account_balance">account_balance</span>
+<span class="font-headline-sm text-headline-sm font-semibold tracking-tight text-on-primary">Northgate Chase</span>
+</div>
+<div class="h-4 w-[1px] bg-outline/40"></div>
+<!-- Search Bar on Left -->
+<div class="relative w-72">
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-outline-variant text-sm" data-icon="search">search</span>
+<input class="w-full bg-primary-container text-on-primary font-body-sm text-body-sm pl-8 pr-3 py-1.5 rounded border border-outline/40 focus:border-secondary focus:ring-0 focus:outline-none placeholder:text-outline-variant" placeholder="Search entity, LEI, or Case ID..." type="text" value="NG-2026-8812">
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-6 ml-2">
+<a class="border-b-2 border-secondary text-on-primary font-title-md text-title-md pb-1" href="#">Chase Queue</a>
+<a class="text-outline-variant hover:text-on-primary font-title-md text-title-md pb-1 transition-colors duration-150" href="#">Analytics &amp; COO</a>
+<a class="text-outline-variant hover:text-on-primary font-title-md text-title-md pb-1 transition-colors duration-150" href="#">Settings</a>
+</nav>
+</div>
+<!-- Trailing Actions & Profile -->
+<div class="flex items-center gap-3">
+<button class="bg-primary-container text-on-primary hover:bg-primary-container/80 text-label-md font-label-md px-3 py-1.5 rounded border border-outline/30 transition-colors duration-150">
+        Switch: RM Mode
+      </button>
+<button class="bg-secondary text-on-secondary hover:bg-secondary-container text-label-md font-label-md px-3 py-1.5 rounded transition-colors duration-150">
+        Ops Review
+      </button>
+<div class="h-4 w-[1px] bg-outline/40 mx-1"></div>
+<button class="text-outline-variant hover:text-on-primary transition-colors p-1" title="Notifications">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-outline-variant hover:text-on-primary transition-colors p-1" title="Help Desk">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="flex items-center gap-2 pl-2">
+<img alt="RM Officer Profile Avatar" class="w-7 h-7 rounded border border-outline-variant/40 object-cover" data-alt="Professional corporate headshot of Liam Chen, a senior corporate KYC analyst wearing a tailored navy suit with a clean neutral institutional background. Crisp executive lighting with ultra-subtle color tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMDdEj5DPu1srp1-HfZ4Zjj_tSZ4CWlaNBzJoZPdGl7I99iPKz5-lN7rPkmLRo4kRnvJgGER_ULl-5H_E0mfOkoMgikiHJoCnLEekzx8Z0DrP8IJgb7dqpq0GwNZSRCZnTxwMizFFq-hl0i8i7pBJt3D7wfVxdhFIwGm7ToN-H3wbhgJzU_1Dp_Oa4OrQ-R7BKE4U2UnYKD9dvbRqQIP2pSyH4xejDJ1XQpnfldQYG">
+<div class="hidden lg:flex flex-col text-left">
+<span class="font-label-sm text-label-sm text-on-primary leading-tight">L. Chen</span>
+<span class="font-body-sm text-body-sm text-outline-variant text-[10px] leading-tight">Analyst Desk 4</span>
+</div>
+</div>
+</div>
+</header>
+<!-- MAIN WRAPPER: Rail + Dual Triage Workspace (1440px target) -->
+<div class="flex w-full min-h-[calc(100vh-3.5rem)]">
+<!-- SIDE NAVIGATION RAIL (Shared Component: SideNavBar) -->
+<aside class="bg-primary text-secondary docked left-0 top-14 h-[calc(100vh-3.5rem)] w-60 border-r border-outline/30 shrink-0 hidden lg:flex">
+<div class="flex flex-col justify-between h-full p-4">
+<!-- Top Section: Header & Main Tabs -->
+<div>
+<!-- Emblem Header -->
+<div class="flex items-center gap-3 px-2 py-2 mb-4 border-b border-outline/20">
+<div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center text-secondary-fixed">
+<span class="material-symbols-outlined" data-icon="shield">shield</span>
+</div>
+<div>
+<h2 class="font-title-md text-title-md text-on-primary">Corporate KYC</h2>
+<p class="font-body-sm text-body-sm text-outline-variant text-[11px]">Onboarding &amp; Chasing</p>
+</div>
+</div>
+<!-- Primary Rail CTA -->
+<button class="w-full mb-4 bg-secondary hover:bg-secondary-container text-on-secondary font-label-md text-label-md py-2 px-3 rounded flex items-center justify-center gap-2 transition-colors duration-150">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+<span>New Case File</span>
+</button>
+<!-- Core Navigation Links (Cases is active context) -->
+<nav class="space-y-1">
+<a class="bg-secondary text-on-secondary font-label-md text-label-md rounded flex items-center gap-3 px-3 py-2 border-l-2 border-primary-fixed" href="#">
+<span class="material-symbols-outlined" data-icon="folder_shared">folder_shared</span>
+<span>Cases</span>
+</a>
+<a class="text-outline-variant hover:text-on-primary hover:bg-primary-container/50 font-label-md text-label-md rounded flex items-center gap-3 px-3 py-2 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="checklist">checklist</span>
+<span>Worklists</span>
+</a>
+<a class="text-outline-variant hover:text-on-primary hover:bg-primary-container/50 font-label-md text-label-md rounded flex items-center gap-3 px-3 py-2 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="fact_check">fact_check</span>
+<span>Dossiers</span>
+</a>
+<a class="text-outline-variant hover:text-on-primary hover:bg-primary-container/50 font-label-md text-label-md rounded flex items-center gap-3 px-3 py-2 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span>Audit Logs</span>
+</a>
+<a class="text-outline-variant hover:text-on-primary hover:bg-primary-container/50 font-label-md text-label-md rounded flex items-center gap-3 px-3 py-2 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span>Reports</span>
+</a>
+</nav>
+</div>
+<!-- Footer Help & Documentation Links -->
+<div class="pt-4 border-t border-outline/20 space-y-1">
+<a class="text-outline-variant hover:text-on-primary hover:bg-primary-container/50 font-label-md text-label-md rounded flex items-center gap-3 px-3 py-1.5 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span>Documentation</span>
+</a>
+<a class="text-outline-variant hover:text-on-primary hover:bg-primary-container/50 font-label-md text-label-md rounded flex items-center gap-3 px-3 py-1.5 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="support">support</span>
+<span>Compliance Help</span>
+</a>
+<div class="px-3 pt-2 text-[10px] text-outline text-tabular-numeric">
+            Build 4.19.2 // Node SEC-UK
+          </div>
+</div>
+</div>
+</aside>
+<!-- CONTENT WORKSPACE: Split Layout (Background Case Context + Slide-over Operational Drawer) -->
+<main class="flex-1 flex bg-background flex-col lg:flex-row overflow-y-auto">
+<!-- LEFT WORKSPACE: Case Ledger & Dossier Background View (Underlying Screen B State) -->
+<section class="flex-1 flex flex-col min-w-0 border-r border-outline-variant/30 overflow-y-auto w-full">
+<!-- Sub-Header & Breadcrumbs -->
+<div class="px-6 py-3 bg-surface-container-lowest border-b border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center gap-2 font-label-sm text-label-sm text-outline">
+<a class="hover:text-secondary" href="#">KYC Master Queue</a>
+<span>/</span>
+<a class="hover:text-secondary" href="#">Maritime Desk</a>
+<span>/</span>
+<span class="text-on-surface font-semibold">Meridian Horizon Shipping Ltd</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] font-label-sm uppercase bg-error-container text-on-error-container border border-error/20">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+              Blocked Item Active
+            </span>
+<span class="font-tabular-numeric text-body-sm text-outline">Stage 3 / 6</span>
+</div>
+</div>
+<!-- Entity Dossier Summary Bar -->
+<div class="px-6 py-4 bg-surface-container-low border-b border-outline-variant/20 flex flex-wrap items-center justify-between gap-4">
+<div>
+<div class="flex items-center gap-3">
+<h1 class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight">Meridian Horizon Shipping Ltd</h1>
+<span class="font-tabular-numeric text-body-sm bg-surface-container-high px-2 py-0.5 rounded text-on-surface-variant font-mono">NG-2026-8812</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+              Legal Form: Private Limited Company (UK) • LEI: 213800K9V98E4B119932 • Onboarding Initiated: 12 Jan 2026
+            </p>
+</div>
+<div class="flex items-center gap-4 text-right">
+<div class="text-left border-l border-outline-variant/40 pl-3">
+<span class="block font-label-sm text-label-sm text-outline uppercase">Assigned Analyst</span>
+<span class="font-title-md text-title-md text-on-surface font-medium">Liam Chen (Desk 4)</span>
+</div>
+<div class="text-left border-l border-outline-variant/40 pl-3">
+<span class="block font-label-sm text-label-sm text-outline uppercase">Lead RM</span>
+<span class="font-title-md text-title-md text-on-surface font-medium">Sarah Jenkins</span>
+</div>
+</div>
+</div>
+<!-- Underlying Case Verification Ledger (Muted Context) -->
+<div class="p-6 space-y-6 opacity-75 pointer-events-none select-none">
+<!-- Pipeline Tracker -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded p-4">
+<span class="font-label-sm text-label-sm text-outline uppercase mb-2 block">KYC Lifecycle Pipeline</span>
+<div class="grid grid-cols-4 gap-2 text-center text-xs">
+<div class="p-2 bg-surface-container rounded border border-outline-variant/20">
+<span class="block font-semibold text-on-surface">Stage 1: Entity Core</span>
+<span class="text-tertiary-fixed-dim text-[11px]">Completed • 15 Jan</span>
+</div>
+<div class="p-2 bg-surface-container rounded border border-outline-variant/20">
+<span class="block font-semibold text-on-surface">Stage 2: Registry ID</span>
+<span class="text-tertiary-fixed-dim text-[11px]">Completed • 28 Jan</span>
+</div>
+<div class="p-2 bg-error-container/40 rounded border border-error/40 text-on-surface">
+<span class="block font-semibold text-error">Stage 3: UBO / PEP</span>
+<span class="text-error font-medium text-[11px]">BLOCKED • 22d Overdue</span>
+</div>
+<div class="p-2 bg-surface-container-low rounded border border-outline-variant/10 text-outline">
+<span class="block font-semibold">Stage 4: Sanctions &amp; Adverse</span>
+<span class="text-[11px]">Pending Stage 3</span>
+</div>
+</div>
+</div>
+<!-- Roster Table Segment -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded overflow-hidden">
+<div class="px-4 py-2.5 bg-surface-container-low border-b border-outline-variant/30 flex justify-between items-center">
+<span class="font-title-md text-title-md text-on-surface font-semibold">Required Verification Evidences</span>
+<span class="text-label-sm text-outline uppercase font-label-sm">4 Items Tracked</span>
+</div>
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead class="bg-surface border-b border-outline-variant/20 font-label-sm text-outline uppercase text-[10px]">
+<tr>
+<th class="px-4 py-2">Document Name</th>
+<th class="px-4 py-2">Source / Scope</th>
+<th class="px-4 py-2">Status</th>
+<th class="px-4 py-2">Last Chase</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr class="bg-error-container/20 border-l-2 border-error">
+<td class="px-4 py-2.5 font-medium text-on-surface">Certified Group Organisational Chart (&gt;25% UBOs)</td>
+<td class="px-4 py-2 text-outline">SPV Tier Structure</td>
+<td class="px-4 py-2"><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-error-container text-on-error-container border border-error/30">OVERDUE</span></td>
+<td class="px-4 py-2 font-tabular-numeric text-outline">Round 2 (02 Mar)</td>
+</tr>
+<tr>
+<td class="px-4 py-2.5 font-medium text-on-surface">Articles of Association (UK entity)</td>
+<td class="px-4 py-2 text-outline">Companies House Official</td>
+<td class="px-4 py-2"><span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-surface-container-high text-on-surface">RECEIVED</span></td>
+<td class="px-4 py-2 font-tabular-numeric text-outline">Completed</td>
+</tr>
+<tr>
+<td class="px-4 py-2.5 font-medium text-on-surface">Director Identity &amp; Proof of Address</td>
+<td class="px-4 py-2 text-outline">2 Nominee Directors</td>
+<td class="px-4 py-2"><span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-surface-container-high text-on-surface">VERIFIED</span></td>
+<td class="px-4 py-2 font-tabular-numeric text-outline">Completed</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- RIGHT OPERATIONAL SLIDE-OVER PANEL: Screen E: Analyst Handoff Panel -->
+<section class="shrink-0 bg-surface-container-lowest border-outline-variant/40 flex flex-col justify-between shadow-2xl relative z-20 w-full border-t">
+<!-- Top Sticky Header of the Handoff Panel -->
+<div class="px-6 py-4 bg-primary text-on-primary border-b border-outline/30 flex items-start justify-between">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-error-container text-base" data-icon="lock">lock</span>
+<span class="font-label-sm text-label-sm text-error-container uppercase tracking-wider font-semibold">Stage 3 Pipeline Blocker</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm font-semibold tracking-tight text-on-primary">
+              Analyst Handoff Request: UBO Extraction Blocked
+            </h2>
+<div class="mt-1 flex items-center gap-2 font-body-sm text-body-sm text-outline-variant text-[12px]">
+<span>Case: <strong class="text-on-primary">Meridian Horizon Shipping Ltd</strong></span>
+<span>•</span>
+<span class="font-tabular-numeric">ID: NG-2026-8812</span>
+</div>
+</div>
+<button class="text-outline-variant hover:text-on-primary p-1 rounded hover:bg-primary-container transition-colors" title="Close Panel">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<!-- Scrollable Operational Content Area -->
+<div class="flex-1 overflow-y-auto p-6 space-y-5 bg-background">
+<!-- Assigned Staff & Downstream Pipeline Badge Bar -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded p-3 grid grid-cols-2 gap-3 text-xs">
+<div class="border-r border-outline-variant/30 pr-3">
+<span class="block font-label-sm text-label-sm text-outline uppercase text-[10px]">Originating KYC Analyst</span>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="badge">badge</span>
+<span class="font-title-md text-title-md text-on-surface font-semibold text-xs">Liam Chen</span>
+</div>
+<span class="text-on-surface-variant text-[11px]">Senior Corporate KYC Analyst, Desk 4</span>
+</div>
+<div>
+<span class="block font-label-sm text-label-sm text-outline uppercase text-[10px]">Stalled Downstream Stage</span>
+<div class="flex items-center gap-1 mt-0.5 text-error font-semibold">
+<span class="material-symbols-outlined text-sm" data-icon="error">error</span>
+<span>Stage 3: UBO Extraction</span>
+</div>
+<span class="text-on-surface-variant text-[11px]">&amp; Politically Exposed Persons (PEP)</span>
+</div>
+</div>
+<!-- Missing Document Context Card -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded p-4 space-y-3">
+<div class="flex items-center justify-between pb-2 border-b border-outline-variant/20">
+<span class="font-label-sm text-label-sm text-outline uppercase font-bold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-error text-base" data-icon="warning">warning</span>
+                Deficient Verification Evidence
+              </span>
+<span class="px-2 py-0.5 rounded text-label-sm uppercase bg-error-container text-on-error-container border border-error/30 font-bold font-tabular-numeric">
+                22 Days Waiting | Chase Round 3
+              </span>
+</div>
+<div class="space-y-2 text-body-sm text-on-surface">
+<div class="flex items-start gap-2 bg-surface-container-low p-2 rounded border border-outline-variant/20">
+<span class="material-symbols-outlined text-error mt-0.5 text-base" data-icon="description">description</span>
+<div class="flex-1">
+<span class="font-semibold block text-on-surface">Blocked Document: Certified Group Organisational Chart (&gt;25% UBOs)</span>
+<span class="text-[11px] text-on-surface-variant">Required to verify full equity &amp; voting distribution. Final notice before statutory suspension.</span>
+</div>
+</div>
+<div class="flex items-start gap-2 bg-surface-container-low p-2 rounded border border-outline-variant/20">
+<span class="material-symbols-outlined text-outline mt-0.5 text-base" data-icon="find_in_page">find_in_page</span>
+<div class="flex-1">
+<span class="font-semibold block text-on-surface">Associated Extract: Companies House Official Extract (&lt;30 days old)</span>
+<span class="text-[11px] text-on-surface-variant">Cross-referencing filing history vs disclosed shareholder registry.</span>
+</div>
+</div>
+<div class="pt-1">
+<span class="font-label-sm text-label-sm text-outline uppercase text-[10px] block">Entity Complexity Assessment:</span>
+<p class="font-body-sm text-body-sm text-on-surface bg-surface-container-high/40 p-2 rounded border border-outline-variant/20 mt-1">
+                  Complex Maritime SPV with tiered cross-border ownership in UK and Cyprus. Requires multi-jurisdictional parent entity look-through.
+                </p>
+</div>
+</div>
+</div>
+<!-- Analyst Handoff Rationale & Case Notes -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded p-4 space-y-3">
+<span class="font-label-sm text-label-sm text-outline uppercase font-bold block">
+              Analyst Handoff Rationale &amp; Case Notes
+            </span>
+<div class="bg-surface-container-low border-l-2 border-secondary p-3 rounded-r text-body-sm text-on-surface space-y-2">
+<p class="font-body-md text-body-md text-on-surface font-medium leading-relaxed">
+                "Analyst cannot determine beneficial owners exceeding statutory 25% threshold without the certified group structure. Two holding entities (<span class="font-semibold underline">Aegis Horizon Trust</span> and <span class="font-semibold underline">Solas Capital</span>) require verified shareholder documentation before PEP screening can proceed."
+              </p>
+<div class="pt-2 border-t border-outline-variant/20 flex items-center justify-between text-[11px] text-outline">
+<span>Logged by Liam Chen (ID: 9942)</span>
+<span class="font-tabular-numeric">Timestamp: 04 Mar 2026, 09:14 GMT</span>
+</div>
+</div>
+<!-- Previous Outreach History Context -->
+<div class="flex items-start gap-2 text-body-sm bg-surface-container-highest/20 p-2.5 rounded border border-outline-variant/30 text-on-surface-variant">
+<span class="material-symbols-outlined text-outline mt-0.5 text-base" data-icon="history_toggle_off">history_toggle_off</span>
+<div class="text-[12px]">
+<strong class="text-on-surface font-medium">Previous RM Contact:</strong> Sarah Jenkins sent Round 2 reminder on 02 Mar. Client acknowledged receipt but has not uploaded the signed certified chart.
+              </div>
+</div>
+</div>
+<!-- Action Formulation Panel: Raise Linked Request to RM -->
+<div class="bg-surface-container-lowest border-2 border-secondary/40 rounded p-4 space-y-3.5 relative overflow-hidden">
+<div class="absolute top-0 right-0 bg-secondary text-on-secondary px-2.5 py-0.5 text-[10px] font-label-sm uppercase font-bold rounded-bl">
+              Operational Priority Action
+            </div>
+<div>
+<span class="font-title-md text-title-md font-bold text-on-surface block">Raise Linked Request to RM</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px]">Direct priority dispatch to Relationship Manager active Chase Queue</span>
+</div>
+<!-- Form Elements Grid -->
+<div class="space-y-3 pt-1">
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block font-label-sm text-label-sm text-outline uppercase mb-1">Action Type</label>
+<input class="w-full bg-surface-container-low text-on-surface font-body-sm text-body-sm px-2.5 py-1.5 rounded border border-outline-variant/40 focus:ring-0 focus:outline-none" readonly="" type="text" value="Request Priority Chase from RM">
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-outline uppercase mb-1">Target RM</label>
+<div class="flex items-center gap-1.5 bg-surface-container-low px-2.5 py-1.5 rounded border border-outline-variant/40">
+<span class="material-symbols-outlined text-sm text-secondary" data-icon="person">person</span>
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">Sarah Jenkins (Maritime Desk)</span>
+</div>
+</div>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-outline uppercase mb-1">Priority Level</label>
+<div class="flex items-center gap-2 bg-error-container/30 px-3 py-1.5 rounded border border-error/30 text-on-surface">
+<span class="w-2 h-2 rounded-full bg-error shrink-0"></span>
+<span class="font-label-md text-label-md font-bold text-error">High / Critical Pipeline Blocker (Overdue &gt;20d)</span>
+</div>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-outline uppercase mb-1">Pre-filled Analyst Message to RM</label>
+<textarea class="w-full bg-surface-container-lowest text-on-surface font-body-sm text-body-sm p-2.5 rounded border border-outline-variant focus:border-secondary focus:ring-1 focus:ring-secondary leading-relaxed resize-none" rows="3">Sarah, UBO Extraction is completely paused for Meridian Horizon Shipping Ltd. We need the Certified Group Org Chart showing the full hierarchy above Aegis Horizon Trust. Please initiate expedited outreach or client phone call today.</textarea>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Drawer Action Trigger & Audit Footer -->
+<div class="p-6 bg-surface-container-lowest border-t border-outline-variant/30 space-y-3">
+<!-- Button Actions -->
+<div class="space-y-2">
+<button class="w-full bg-secondary hover:bg-secondary-container text-on-secondary font-label-md text-label-md py-2.5 px-4 rounded font-semibold flex items-center justify-center gap-2 transition-all duration-150 shadow-sm active:opacity-95">
+<span class="material-symbols-outlined text-base" data-icon="send">send</span>
+<span>Send Linked Request to RM (Creates Queue Task &amp; Case Event)</span>
+</button>
+<div class="grid gap-2 grid-cols-1">
+<button class="w-full bg-surface-container-lowest hover:bg-surface-container-low text-on-surface font-label-md text-label-md py-2 px-3 rounded border border-outline-variant transition-colors flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-sm" data-icon="arrow_back">arrow_back</span>
+<span>Return to Case Detail</span>
+</button>
+<button class="w-full bg-surface-container-lowest hover:bg-error-container/30 text-error font-label-md text-label-md py-2 px-3 rounded border border-error/30 transition-colors flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-sm" data-icon="gavel">gavel</span>
+<span>Mark for Compliance Supervisor Review</span>
+</button>
+</div>
+</div>
+<!-- Institutional Audit Line -->
+<div class="pt-2 border-t border-outline-variant/20 flex items-start gap-1.5 text-outline">
+<span class="material-symbols-outlined text-xs mt-0.5 text-secondary" data-icon="verified_user">verified_user</span>
+<p class="font-body-sm text-body-sm text-[11px] leading-tight">
+              Audit Footer: Any analyst request is tied to Case #NG-2026-8812 and triggers an immediate high-priority alert in Sarah Jenkins' Chase Queue.
+            </p>
+</div>
+</div>
+</section>
+</main>
+</div>
+
+
+</body></html>

@@ -1,0 +1,857 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Northgate Chase - Corporate KYC Case Queue</title>
+<!-- Material Symbols Outlined font -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Inter Font Family -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS with forms & container-queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Verbatim Tailwind Config Injection -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "outline-variant": "#c6c6ce",
+            "background": "#faf8ff",
+            "outline": "#76767e",
+            "error-container": "#ffdad6",
+            "surface-container-lowest": "#ffffff",
+            "on-background": "#131b2e",
+            "primary-fixed": "#dbe1ff",
+            "secondary": "#0051d5",
+            "secondary-fixed": "#dbe1ff",
+            "secondary-container": "#316bf3",
+            "on-secondary": "#ffffff",
+            "surface-tint": "#545d7c",
+            "primary-fixed-dim": "#bdc5e9",
+            "surface-dim": "#d2d9f4",
+            "inverse-on-surface": "#eef0ff",
+            "on-secondary-fixed-variant": "#003ea8",
+            "surface-container": "#eaedff",
+            "on-tertiary": "#ffffff",
+            "on-error-container": "#93000a",
+            "surface-container-high": "#e2e7ff",
+            "surface-variant": "#dae2fd",
+            "surface-container-low": "#f2f3ff",
+            "inverse-primary": "#bdc5e9",
+            "on-secondary-container": "#fefcff",
+            "on-tertiary-fixed": "#002114",
+            "on-secondary-fixed": "#00174b",
+            "on-error": "#ffffff",
+            "secondary-fixed-dim": "#b4c5ff",
+            "on-primary-container": "#838cae",
+            "inverse-surface": "#283044",
+            "tertiary": "#00160c",
+            "tertiary-fixed-dim": "#68dba9",
+            "primary-container": "#1c2541",
+            "surface": "#faf8ff",
+            "error": "#ba1a1a",
+            "on-surface-variant": "#45464d",
+            "surface-container-highest": "#dae2fd",
+            "on-surface": "#131b2e",
+            "on-primary": "#ffffff",
+            "on-tertiary-fixed-variant": "#005137",
+            "on-primary-fixed-variant": "#3d4664",
+            "primary": "#06102b",
+            "on-primary-fixed": "#111a36",
+            "tertiary-fixed": "#85f8c4",
+            "on-tertiary-container": "#1fa072",
+            "surface-bright": "#faf8ff",
+            "tertiary-container": "#002d1d"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "gutter-desktop": "1.5rem",
+            "margin-desktop": "2rem",
+            "space-sm": "0.5rem",
+            "space-md": "0.75rem",
+            "space-lg": "1rem",
+            "space-xl": "1.5rem",
+            "margin": "1rem",
+            "space-xs": "0.25rem",
+            "gutter": "1rem"
+          },
+          "fontFamily": {
+            "label-sm": ["Inter"],
+            "headline-sm": ["Inter"],
+            "label-md": ["Inter"],
+            "tabular-numeric": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "body-lg": ["Inter"],
+            "headline-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "title-md": ["Inter"],
+            "headline-md": ["Inter"],
+            "body-sm": ["Inter"]
+          },
+          "fontSize": {
+            "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.5rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.03em", "fontWeight": "600" }],
+            "tabular-numeric": ["0.8125rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "500" }],
+            "headline-lg-mobile": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "body-lg": ["0.9375rem", { "lineHeight": "1.5rem", "fontWeight": "400" }],
+            "headline-lg": ["2rem", { "lineHeight": "2.5rem", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-md": ["0.8125rem", { "lineHeight": "1.25rem", "fontWeight": "400" }],
+            "title-md": ["0.9375rem", { "lineHeight": "1.375rem", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "headline-md": ["1.375rem", { "lineHeight": "1.75rem", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "body-sm": ["0.75rem", { "lineHeight": "1.125rem", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      font-size: 18px;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased overflow-x-hidden min-h-screen flex flex-col font-body-md selection:bg-secondary selection:text-on-secondary">
+<!-- ================= TOP INSTITUTIONAL BAR ================= -->
+<!-- Executing Shared Component: TopNavBar with exact JSON bindings & semantic shell -->
+<header class="bg-primary dark:bg-primary-container text-on-primary dark:text-inverse-primary border-b border-outline/30 dark:border-outline-variant/20 flex justify-between items-center w-full px-6 h-14 fixed top-0 left-0 z-50"><div class="flex items-center gap-3 lg:gap-6">
+  <!-- Mobile Nav Toggle Button -->
+  <button class="lg:hidden p-1.5 text-outline-variant hover:text-on-primary hover:bg-primary-container rounded transition-colors" onclick="const aside = document.querySelector('aside'); aside.classList.toggle('hidden'); aside.classList.toggle('flex');" title="Toggle Menu">
+    <span class="material-symbols-outlined" data-icon="menu">menu</span>
+  </button>
+  <div class="flex items-center gap-2 lg:gap-3">
+    <span class="material-symbols-outlined text-secondary font-semibold" data-icon="account_balance">account_balance</span>
+    <span class="font-headline-sm text-headline-sm font-semibold tracking-tight text-on-primary dark:text-inverse-primary whitespace-nowrap">Northgate Chase</span>
+  </div>
+  <!-- Top search bar: collapsed on mobile, visible on sm+ -->
+  <div class="relative w-44 md:w-60 lg:w-72 hidden sm:block">
+    <span class="absolute inset-y-0 left-2.5 flex items-center pointer-events-none text-outline-variant">
+      <span class="material-symbols-outlined" data-icon="search">search</span>
+    </span>
+    <input class="w-full h-8 pl-8 pr-3 bg-primary-container border border-outline/40 text-on-primary placeholder:text-outline-variant text-body-sm rounded focus:outline-none focus:border-secondary transition-colors duration-150" placeholder="Search entities, LEI..." type="text">
+  </div>
+  <!-- Navigation Links: visible on md+ -->
+  <nav class="hidden md:flex items-center gap-4 lg:gap-5 ml-1 lg:ml-2">
+    <a class="border-b-2 border-secondary text-on-primary font-title-md text-title-md pb-1 whitespace-nowrap" href="#">Chase Queue</a>
+    <a class="text-outline-variant hover:text-on-primary font-title-md text-title-md pb-1 transition-colors duration-150 whitespace-nowrap" href="#">Analytics &amp; COO</a>
+    <a class="text-outline-variant hover:text-on-primary font-title-md text-title-md pb-1 transition-colors duration-150 whitespace-nowrap" href="#">Settings</a>
+  </nav>
+</div>
+<!-- Trailing Actions & Officer Profile -->
+<div class="flex items-center gap-2 sm:gap-3 lg:gap-4">
+  <!-- Trailing Secondary Action: Switch: RM Mode (hidden on extra small) -->
+  <button class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 text-label-md font-label-md text-secondary-fixed bg-primary-container hover:bg-secondary/20 border border-outline/40 rounded transition-colors duration-150 whitespace-nowrap">
+    <span class="material-symbols-outlined text-secondary" data-icon="sync_alt">sync_alt</span>
+    <span class="hidden lg:inline">Switch: RM Mode</span>
+    <span class="lg:hidden">RM</span>
+  </button>
+  <!-- Trailing Primary Action: Ops Review -->
+  <button class="px-2.5 sm:px-3 py-1 text-label-md font-label-md text-on-secondary bg-secondary hover:bg-secondary-container rounded font-semibold transition-colors duration-150 whitespace-nowrap">
+    Ops Review
+  </button>
+  <div class="h-4 w-[1px] bg-outline/40 hidden sm:block"></div>
+  <!-- Trailing Icon Actions -->
+  <div class="flex items-center gap-0.5 sm:gap-1">
+    <button class="p-1 text-outline-variant hover:text-on-primary hover:bg-primary-container rounded transition-colors" title="Notifications">
+      <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+    </button>
+    <button class="hidden sm:block p-1 text-outline-variant hover:text-on-primary hover:bg-primary-container rounded transition-colors" title="Help &amp; Guides">
+      <span class="material-symbols-outlined" data-icon="help">help</span>
+    </button>
+  </div>
+  <!-- Officer Profile Avatar and Info -->
+  <div class="flex items-center gap-2 pl-1 sm:pl-2 border-l border-outline/30">
+    <div class="w-8 h-8 rounded-full bg-primary-container border border-outline/40 overflow-hidden flex items-center justify-center flex-shrink-0">
+      <img alt="RM Officer Profile Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZX-y1KeFC4ZMYcKbZOpmMiNCvOE6B6glsPlSALnuBpREqqFbq1QJw22GUBS3M8pZb3iBOzr5CD8eY0TpITgZbXY43o-bmq9242G8qLmqqNnocUgQ9m9gm7Kq61FOcSj3pWjTRQ-ZMTUz38GA7DeSattS3PbG7TD5QZ4mQOWqgWLDRKlYQXPFO6vtIPCuXnvCwRyfooDzQFAZ5gGBYgHAgCJNQLLrGhybaosJ58uan">
+    </div>
+    <div class="hidden md:flex flex-col text-left">
+      <span class="text-body-sm font-semibold text-on-primary leading-tight whitespace-nowrap">Sarah Jenkins</span>
+      <span class="text-label-sm text-outline-variant leading-none">Senior RM</span>
+    </div>
+  </div>
+</div></header>
+<!-- ================= SHELL BODY (FIXED SIDE RAIL + CONTENT CANVAS) ================= -->
+<div class="flex pt-14 w-full min-h-[calc(100vh-3.5rem)]">
+<!-- ================= FIXED LEFT NAV RAIL ================= -->
+<!-- Executing Shared Component: SideNavBar -->
+<aside class="bg-primary dark:bg-primary-container text-secondary dark:text-secondary-fixed border-r border-outline/30 dark:border-outline-variant/20 docked left-0 top-14 h-[calc(100vh-3.5rem)] w-60 fixed hidden lg:flex flex-col justify-between p-4 z-40 shadow-xl lg:shadow-none">
+<!-- Top Rail Cluster -->
+<div class="flex flex-col gap-4">
+<!-- Mobile Close Header -->
+<div class="flex items-center justify-between lg:hidden pb-2 border-b border-outline/30">
+  <span class="font-label-md text-label-md text-outline-variant uppercase">Navigation</span>
+  <button class="p-1 text-outline-variant hover:text-on-primary" onclick="const aside = document.querySelector('aside'); aside.classList.add('hidden'); aside.classList.remove('flex');">
+    <span class="material-symbols-outlined">close</span>
+  </button>
+</div>
+<!-- Header / Division Identifier -->
+<div class="flex items-center gap-3 px-2 py-1">
+<div class="w-8 h-8 rounded bg-primary-container border border-outline/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-primary dark:text-inverse-primary leading-tight">Corporate KYC</span>
+<span class="font-body-sm text-body-sm text-outline-variant leading-none">Onboarding &amp; Chasing</span>
+</div>
+</div>
+<!-- Rail CTA: New Case File -->
+<button class="w-full flex items-center justify-center gap-2 py-2 px-3 bg-secondary text-on-secondary rounded text-label-md font-label-md hover:bg-secondary-container transition-colors duration-150">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span>New Case File</span>
+</button>
+<!-- Primary Navigation Tabs -->
+<nav class="flex flex-col gap-1 mt-2">
+<!-- Active: Cases -->
+<a class="bg-secondary text-on-secondary font-label-md text-label-md rounded flex items-center gap-3 px-3 py-2 border-l-2 border-primary-fixed" href="#">
+<span class="material-symbols-outlined" data-icon="folder_shared">folder_shared</span>
+<span>Cases</span>
+</a>
+<a class="text-outline-variant hover:text-on-primary hover:bg-primary-container/50 font-label-md text-label-md rounded flex items-center gap-3 px-3 py-2 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="checklist">checklist</span>
+<span>Worklists</span>
+</a>
+<a class="text-outline-variant hover:text-on-primary hover:bg-primary-container/50 font-label-md text-label-md rounded flex items-center gap-3 px-3 py-2 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="fact_check">fact_check</span>
+<span>Dossiers</span>
+</a>
+<a class="text-outline-variant hover:text-on-primary hover:bg-primary-container/50 font-label-md text-label-md rounded flex items-center gap-3 px-3 py-2 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span>Audit Logs</span>
+</a>
+<a class="text-outline-variant hover:text-on-primary hover:bg-primary-container/50 font-label-md text-label-md rounded flex items-center gap-3 px-3 py-2 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span>Reports</span>
+</a>
+</nav>
+</div>
+<!-- Rail Footer Cluster -->
+<div class="flex flex-col gap-1 pt-4 border-t border-outline/30">
+<a class="text-outline-variant hover:text-on-primary hover:bg-primary-container/50 font-label-md text-label-md rounded flex items-center gap-3 px-3 py-2 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span>Documentation</span>
+</a>
+<a class="text-outline-variant hover:text-on-primary hover:bg-primary-container/50 font-label-md text-label-md rounded flex items-center gap-3 px-3 py-2 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="support">support</span>
+<span>Compliance Help</span>
+</a>
+</div>
+</aside>
+<!-- ================= MAIN WORKSPACE CANVAS ================= -->
+<main class="ml-0 lg:ml-60 flex-1 p-3.5 sm:p-4 md:p-6 max-w-[1440px] w-full mx-auto space-y-4 min-w-0">
+<!-- FIRST-TIME RM ONBOARDING BANNER -->
+<div class="bg-surface-container-high border border-outline-variant/40 rounded p-3 flex items-start justify-between gap-3 transition-all duration-200" id="onboarding-banner">
+<div class="flex items-start sm:items-center gap-3">
+<div class="p-1.5 bg-secondary text-on-secondary rounded flex-shrink-0 mt-0.5 sm:mt-0">
+<span class="material-symbols-outlined" data-icon="shield">shield</span>
+</div>
+<div class="flex flex-col">
+<div class="flex flex-wrap items-center gap-2">
+<span class="font-label-md text-label-md text-on-surface font-semibold uppercase tracking-wider">RM Guardrail Verification</span>
+<span class="text-label-sm text-secondary font-semibold bg-surface-container-lowest px-1.5 py-0.5 rounded border border-outline-variant/40">Active Safeguard</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+              Drafts never send automatically. All client follow-ups generate a draft for your review before transmission. Overdue items can be chased in 2 clicks.
+            </p>
+</div>
+</div>
+<button class="text-outline hover:text-on-surface p-1 rounded hover:bg-surface-container transition-colors flex-shrink-0" onclick="document.getElementById('onboarding-banner').style.display='none'" title="Dismiss advisory">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<!-- TOP SUMMARY METRICS STRIP (Responsive 1-col on mobile, 2-col on tablet, 4-col on desktop) -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+<!-- Metric 1: Total Cases Open -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded p-3.5 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Total Cases Open</span>
+<span class="material-symbols-outlined text-outline" data-icon="folder_open">folder_open</span>
+</div>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="font-headline-lg text-headline-lg font-bold text-on-surface font-tabular-numeric">142</span>
+<span class="font-label-sm text-label-sm text-outline">Across 4 desk queues</span>
+</div>
+<div class="mt-2 text-label-sm text-outline flex items-center gap-1 border-t border-surface-container-low pt-1.5">
+<span class="material-symbols-outlined text-[14px] text-tertiary-container" data-icon="arrow_upward">arrow_upward</span>
+<span>+4 new files this cycle</span>
+</div>
+</div>
+<!-- Metric 2: Overdue Follow-ups (Red Accent Chip) -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded p-3.5 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Overdue Follow-ups</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm bg-error-container text-on-error-container border border-error/20">
+              Action Required
+            </span>
+</div>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="font-headline-lg text-headline-lg font-bold text-error font-tabular-numeric">19</span>
+<span class="font-label-sm text-label-sm text-error/90 font-medium">&gt;48h past schedule</span>
+</div>
+<div class="mt-2 text-label-sm text-error flex items-center gap-1 border-t border-surface-container-low pt-1.5">
+<span class="material-symbols-outlined text-[14px]" data-icon="priority_high">priority_high</span>
+<span>3 eligible for batch chasing now</span>
+</div>
+</div>
+<!-- Metric 3: Due Today (Amber Accent Chip) -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded p-3.5 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Due Today</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm bg-amber-100 text-amber-900 border border-amber-300">
+              Escalating
+            </span>
+</div>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="font-headline-lg text-headline-lg font-bold text-amber-800 font-tabular-numeric">14</span>
+<span class="font-label-sm text-label-sm text-outline">Before 17:00 UTC</span>
+</div>
+<div class="mt-2 text-label-sm text-on-surface-variant flex items-center gap-1 border-t border-surface-container-low pt-1.5">
+<span class="material-symbols-outlined text-[14px] text-amber-700" data-icon="schedule">schedule</span>
+<span>8 client touches drafted</span>
+</div>
+</div>
+<!-- Metric 4: Median Days in Chase Stage (Highlighted Bottleneck Callout) -->
+<div class="bg-surface-container-high/60 border border-secondary/30 rounded p-3.5 flex flex-col justify-between relative overflow-hidden">
+<div class="absolute right-0 top-0 w-16 h-16 bg-secondary/5 rounded-bl-full pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary font-semibold uppercase tracking-wider">Median Chase Stage</span>
+<span class="material-symbols-outlined text-secondary" data-icon="hourglass_top">hourglass_top</span>
+</div>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="font-headline-lg text-headline-lg font-bold text-on-surface font-tabular-numeric">17.4 <span class="font-title-md font-normal text-outline">days</span></span>
+</div>
+<div class="mt-2 text-label-sm text-secondary font-medium flex items-center gap-1 border-t border-outline-variant/30 pt-1.5">
+<span class="material-symbols-outlined text-[14px]" data-icon="trending_up">trending_up</span>
+<span>Primary Bottleneck: UBO Extraction</span>
+</div>
+</div>
+</section>
+<!-- FILTER & CONTROLS TOOLBAR (Responsive flexible wrap and stacked buttons) -->
+<section class="bg-surface-container-lowest border border-outline-variant/40 rounded p-3 flex flex-col md:flex-row md:items-center justify-between gap-3">
+<!-- Left: Search and Multi-Select Filters -->
+<div class="flex flex-wrap items-center gap-2.5 sm:gap-3">
+<!-- Search Field -->
+<div class="relative w-full sm:w-60 md:w-64">
+<span class="absolute inset-y-0 left-2.5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</span>
+<input class="w-full h-9 pl-8 pr-3 bg-surface-container-lowest border border-outline-variant text-on-surface placeholder:text-outline text-body-md rounded focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-all" placeholder="Search Client Name or NG-2026-XXXX" type="text">
+</div>
+<!-- RM Selector -->
+<div class="flex items-center gap-1.5 flex-1 sm:flex-initial">
+<span class="font-label-sm text-label-sm text-outline uppercase">RM:</span>
+<select class="h-9 px-2.5 w-full sm:w-auto bg-surface-container-lowest border border-outline-variant text-body-md text-on-surface rounded focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary cursor-pointer">
+<option>Sarah Jenkins (Assigned)</option>
+<option>All RMs</option>
+<option>Marcus Vance</option>
+<option>Elena Rostova</option>
+<option>David Kim</option>
+</select>
+</div>
+<!-- Current Stage Selector -->
+<div class="flex items-center gap-1.5 flex-1 sm:flex-initial">
+<span class="font-label-sm text-label-sm text-outline uppercase">Stage:</span>
+<select class="h-9 px-2.5 w-full sm:w-auto bg-surface-container-lowest border border-outline-variant text-body-md text-on-surface rounded focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary cursor-pointer">
+<option>All Stages</option>
+<option>Document Intake</option>
+<option>Chasing Missing Docs</option>
+<option>UBO Extraction</option>
+</select>
+</div>
+<!-- Aging Filter -->
+<div class="flex items-center gap-1.5 flex-1 sm:flex-initial">
+<span class="font-label-sm text-label-sm text-outline uppercase">Aging:</span>
+<select class="h-9 px-2.5 w-full sm:w-auto bg-surface-container-lowest border border-outline-variant text-body-md text-on-surface rounded focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary cursor-pointer">
+<option>&gt;14 days</option>
+<option>&gt;30 days</option>
+<option>Overdue Only</option>
+<option>All Aging</option>
+</select>
+</div>
+<!-- Sort Filter -->
+<div class="flex items-center gap-1.5 sm:border-l sm:border-outline-variant/50 sm:pl-3 flex-1 sm:flex-initial">
+<span class="font-label-sm text-label-sm text-outline uppercase">Sort:</span>
+<select class="h-9 px-2.5 w-full sm:w-auto bg-surface-container-lowest border border-outline-variant text-body-md text-on-surface rounded focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary cursor-pointer">
+<option>Oldest waiting item (Default)</option>
+<option>Days open (Highest)</option>
+<option>Doc count (Highest)</option>
+</select>
+</div>
+</div>
+<!-- Right: Bulk Actions Trigger -->
+<div class="flex items-center justify-end gap-2 w-full md:w-auto pt-2 md:pt-0 border-t md:border-t-0 border-outline-variant/30">
+<button class="h-9 px-3.5 w-full sm:w-auto justify-center bg-secondary text-on-secondary font-label-md text-label-md rounded flex items-center gap-2 hover:bg-secondary-container transition-colors shadow-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]" data-icon="send">send</span>
+<span>Chase Selected Overdue (3)</span>
+</button>
+</div>
+</section>
+<!-- MAIN CASE QUEUE TABLE -->
+<section class="bg-surface-container-lowest border border-outline-variant/40 rounded overflow-hidden shadow-sm">
+<div class="overflow-x-auto custom-scroll">
+<table class="w-full text-left border-collapse min-w-[900px]">
+<!-- Sticky Clinical Header -->
+<thead class="bg-surface-container-low border-b border-outline-variant/40 sticky top-0 z-10">
+<tr class="h-9 font-label-sm text-label-sm text-outline uppercase tracking-wider">
+<th class="px-3 py-2 w-10 text-center">
+<input checked="" class="w-4 h-4 rounded border-outline-variant text-secondary focus:ring-secondary focus:ring-offset-0 cursor-pointer" type="checkbox">
+</th>
+<th class="px-3 py-2 font-semibold">Client Name &amp; Entity Type</th>
+<th class="px-3 py-2 font-semibold">Case ID</th>
+<th class="px-3 py-2 font-semibold">RM</th>
+<th class="px-3 py-2 font-semibold text-right">Days Open</th>
+<th class="px-3 py-2 font-semibold">Current Stage</th>
+<th class="px-3 py-2 font-semibold text-center">Outstanding</th>
+<th class="px-3 py-2 font-semibold text-right">Oldest Item Waiting</th>
+<th class="px-3 py-2 font-semibold">Next Follow-Up</th>
+<th class="px-3 py-2 font-semibold text-center">Status</th>
+<th class="px-3 py-2 font-semibold text-right">Review Action</th>
+</tr>
+</thead>
+<!-- Data Rows (11 synthetic institutional entities) -->
+<tbody class="divide-y divide-surface-container">
+<!-- Case 1 (Selected + Overdue) -->
+<tr class="h-11 bg-surface-container-low border-l-2 border-secondary hover:bg-surface-container transition-colors">
+<td class="px-3 py-1.5 text-center">
+<input checked="" class="w-4 h-4 rounded border-outline-variant text-secondary focus:ring-secondary cursor-pointer" type="checkbox">
+</td>
+<td class="px-3 py-1.5">
+<div class="font-title-md text-title-md text-on-surface font-semibold leading-tight">Meridian Horizon Shipping Ltd</div>
+<div class="font-body-sm text-body-sm text-outline">Private Limited • Maritime Logistics</div>
+</td>
+<td class="px-3 py-1.5 font-tabular-numeric text-body-md text-on-surface font-medium whitespace-nowrap">NG-2026-8812</td>
+<td class="px-3 py-1.5 text-body-md text-on-surface whitespace-nowrap">Sarah Jenkins</td>
+<td class="px-3 py-1.5 text-right font-tabular-numeric text-body-md font-semibold text-error whitespace-nowrap">34d</td>
+<td class="px-3 py-1.5 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-on-surface-variant border border-outline-variant/30">
+                    Chasing Missing Docs
+                  </span>
+</td>
+<td class="px-3 py-1.5 text-center font-tabular-numeric text-body-md font-medium text-on-surface whitespace-nowrap">3 docs</td>
+<td class="px-3 py-1.5 text-right font-tabular-numeric text-body-md text-error font-medium whitespace-nowrap">18d waiting</td>
+<td class="px-3 py-1.5 font-tabular-numeric text-body-sm text-error font-medium whitespace-nowrap">Overdue by 3d</td>
+<td class="px-3 py-1.5 text-center whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm uppercase bg-error-container text-on-error-container border border-error/20">
+                    Overdue
+                  </span>
+</td>
+<td class="px-3 py-1.5 text-right whitespace-nowrap">
+<button class="h-7 px-2.5 bg-surface-container-lowest border border-outline-variant hover:border-secondary hover:text-secondary text-on-surface text-label-md font-label-md rounded transition-colors inline-flex items-center gap-1 font-semibold">
+<span>Review Case &amp; Chase</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</td>
+</tr>
+<!-- Case 2 (Selected + Overdue) -->
+<tr class="h-11 bg-surface-container-low border-l-2 border-secondary hover:bg-surface-container transition-colors">
+<td class="px-3 py-1.5 text-center">
+<input checked="" class="w-4 h-4 rounded border-outline-variant text-secondary focus:ring-secondary cursor-pointer" type="checkbox">
+</td>
+<td class="px-3 py-1.5">
+<div class="font-title-md text-title-md text-on-surface font-semibold leading-tight">Aegis Capital Logistics Corp</div>
+<div class="font-body-sm text-body-sm text-outline">Holding Co • Cross-border Asset SPV</div>
+</td>
+<td class="px-3 py-1.5 font-tabular-numeric text-body-md text-on-surface font-medium whitespace-nowrap">NG-2026-8740</td>
+<td class="px-3 py-1.5 text-body-md text-on-surface whitespace-nowrap">Sarah Jenkins</td>
+<td class="px-3 py-1.5 text-right font-tabular-numeric text-body-md font-semibold text-error whitespace-nowrap">28d</td>
+<td class="px-3 py-1.5 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm bg-error-container/40 text-on-error-container border border-error/30">
+                    UBO Blocked
+                  </span>
+</td>
+<td class="px-3 py-1.5 text-center font-tabular-numeric text-body-md font-medium text-on-surface whitespace-nowrap">4 docs</td>
+<td class="px-3 py-1.5 text-right font-tabular-numeric text-body-md text-error font-medium whitespace-nowrap">14d waiting</td>
+<td class="px-3 py-1.5 font-tabular-numeric text-body-sm text-error font-medium whitespace-nowrap">Overdue by 2d</td>
+<td class="px-3 py-1.5 text-center whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm uppercase bg-error-container text-on-error-container border border-error/20">
+                    Overdue
+                  </span>
+</td>
+<td class="px-3 py-1.5 text-right whitespace-nowrap">
+<button class="h-7 px-2.5 bg-surface-container-lowest border border-outline-variant hover:border-secondary hover:text-secondary text-on-surface text-label-md font-label-md rounded transition-colors inline-flex items-center gap-1 font-semibold">
+<span>Review Case &amp; Chase</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</td>
+</tr>
+<!-- Case 3 (Selected + Overdue) -->
+<tr class="h-11 bg-surface-container-low border-l-2 border-secondary hover:bg-surface-container transition-colors">
+<td class="px-3 py-1.5 text-center">
+<input checked="" class="w-4 h-4 rounded border-outline-variant text-secondary focus:ring-secondary cursor-pointer" type="checkbox">
+</td>
+<td class="px-3 py-1.5">
+<div class="font-title-md text-title-md text-on-surface font-semibold leading-tight">Solas Energy Infrastructure SA</div>
+<div class="font-body-sm text-body-sm text-outline">Fund SPV • Renewable Project Dev</div>
+</td>
+<td class="px-3 py-1.5 font-tabular-numeric text-body-md text-on-surface font-medium whitespace-nowrap">NG-2026-8692</td>
+<td class="px-3 py-1.5 text-body-md text-on-surface whitespace-nowrap">Sarah Jenkins</td>
+<td class="px-3 py-1.5 text-right font-tabular-numeric text-body-md font-semibold text-error whitespace-nowrap">22d</td>
+<td class="px-3 py-1.5 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-on-surface-variant border border-outline-variant/30">
+                    Chasing Missing Docs
+                  </span>
+</td>
+<td class="px-3 py-1.5 text-center font-tabular-numeric text-body-md font-medium text-on-surface whitespace-nowrap">2 docs</td>
+<td class="px-3 py-1.5 text-right font-tabular-numeric text-body-md text-error font-medium whitespace-nowrap">11d waiting</td>
+<td class="px-3 py-1.5 font-tabular-numeric text-body-sm text-error font-medium whitespace-nowrap">Overdue by 1d</td>
+<td class="px-3 py-1.5 text-center whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm uppercase bg-error-container text-on-error-container border border-error/20">
+                    Overdue
+                  </span>
+</td>
+<td class="px-3 py-1.5 text-right whitespace-nowrap">
+<button class="h-7 px-2.5 bg-surface-container-lowest border border-outline-variant hover:border-secondary hover:text-secondary text-on-surface text-label-md font-label-md rounded transition-colors inline-flex items-center gap-1 font-semibold">
+<span>Review Case &amp; Chase</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</td>
+</tr>
+<!-- Case 4 (Due Today) -->
+<tr class="h-11 bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<td class="px-3 py-1.5 text-center">
+<input class="w-4 h-4 rounded border-outline-variant text-secondary focus:ring-secondary cursor-pointer" type="checkbox">
+</td>
+<td class="px-3 py-1.5">
+<div class="font-title-md text-title-md text-on-surface font-semibold leading-tight">Vanguard Biometrics Global Plc</div>
+<div class="font-body-sm text-body-sm text-outline">Public Listed • Defense Hardware</div>
+</td>
+<td class="px-3 py-1.5 font-tabular-numeric text-body-md text-on-surface font-medium whitespace-nowrap">NG-2026-8519</td>
+<td class="px-3 py-1.5 text-body-md text-on-surface whitespace-nowrap">Sarah Jenkins</td>
+<td class="px-3 py-1.5 text-right font-tabular-numeric text-body-md text-on-surface font-medium whitespace-nowrap">19d</td>
+<td class="px-3 py-1.5 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-on-surface-variant border border-outline-variant/30">
+                    Document Intake
+                  </span>
+</td>
+<td class="px-3 py-1.5 text-center font-tabular-numeric text-body-md font-medium text-on-surface whitespace-nowrap">1 doc</td>
+<td class="px-3 py-1.5 text-right font-tabular-numeric text-body-md text-amber-700 font-medium whitespace-nowrap">9d waiting</td>
+<td class="px-3 py-1.5 font-tabular-numeric text-body-sm text-amber-800 font-medium whitespace-nowrap">Today, 14:00</td>
+<td class="px-3 py-1.5 text-center whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm uppercase bg-amber-100 text-amber-900 border border-amber-300">
+                    Due today
+                  </span>
+</td>
+<td class="px-3 py-1.5 text-right whitespace-nowrap">
+<button class="h-7 px-2.5 bg-surface-container-lowest border border-outline-variant hover:border-secondary hover:text-secondary text-on-surface text-label-md font-label-md rounded transition-colors inline-flex items-center gap-1 font-semibold">
+<span>Review Case &amp; Chase</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</td>
+</tr>
+<!-- Case 5 (Due Today) -->
+<tr class="h-11 bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<td class="px-3 py-1.5 text-center">
+<input class="w-4 h-4 rounded border-outline-variant text-secondary focus:ring-secondary cursor-pointer" type="checkbox">
+</td>
+<td class="px-3 py-1.5">
+<div class="font-title-md text-title-md text-on-surface font-semibold leading-tight">Kestrel Maritime Holdings LLC</div>
+<div class="font-body-sm text-body-sm text-outline">Private Ltd • Freight Brokerage</div>
+</td>
+<td class="px-3 py-1.5 font-tabular-numeric text-body-md text-on-surface font-medium whitespace-nowrap">NG-2026-8401</td>
+<td class="px-3 py-1.5 text-body-md text-on-surface whitespace-nowrap">Elena Rostova</td>
+<td class="px-3 py-1.5 text-right font-tabular-numeric text-body-md text-on-surface font-medium whitespace-nowrap">14d</td>
+<td class="px-3 py-1.5 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-on-surface-variant border border-outline-variant/30">
+                    Chasing Missing Docs
+                  </span>
+</td>
+<td class="px-3 py-1.5 text-center font-tabular-numeric text-body-md font-medium text-on-surface whitespace-nowrap">3 docs</td>
+<td class="px-3 py-1.5 text-right font-tabular-numeric text-body-md text-amber-700 font-medium whitespace-nowrap">7d waiting</td>
+<td class="px-3 py-1.5 font-tabular-numeric text-body-sm text-amber-800 font-medium whitespace-nowrap">Today, 16:30</td>
+<td class="px-3 py-1.5 text-center whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm uppercase bg-amber-100 text-amber-900 border border-amber-300">
+                    Due today
+                  </span>
+</td>
+<td class="px-3 py-1.5 text-right whitespace-nowrap">
+<button class="h-7 px-2.5 bg-surface-container-lowest border border-outline-variant hover:border-secondary hover:text-secondary text-on-surface text-label-md font-label-md rounded transition-colors inline-flex items-center gap-1 font-semibold">
+<span>Review Case &amp; Chase</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</td>
+</tr>
+<!-- Case 6 (On Track) -->
+<tr class="h-11 bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<td class="px-3 py-1.5 text-center">
+<input class="w-4 h-4 rounded border-outline-variant text-secondary focus:ring-secondary cursor-pointer" type="checkbox">
+</td>
+<td class="px-3 py-1.5">
+<div class="font-title-md text-title-md text-on-surface font-semibold leading-tight">Cobalt Ridge Minerals Ltd</div>
+<div class="font-body-sm text-body-sm text-outline">Holding Co • Mining Concessions</div>
+</td>
+<td class="px-3 py-1.5 font-tabular-numeric text-body-md text-on-surface font-medium whitespace-nowrap">NG-2026-8329</td>
+<td class="px-3 py-1.5 text-body-md text-on-surface whitespace-nowrap">Marcus Vance</td>
+<td class="px-3 py-1.5 text-right font-tabular-numeric text-body-md text-on-surface font-medium whitespace-nowrap">11d</td>
+<td class="px-3 py-1.5 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-on-surface-variant border border-outline-variant/30">
+                    Document Intake
+                  </span>
+</td>
+<td class="px-3 py-1.5 text-center font-tabular-numeric text-body-md font-medium text-on-surface whitespace-nowrap">2 docs</td>
+<td class="px-3 py-1.5 text-right font-tabular-numeric text-body-md text-outline font-medium whitespace-nowrap">4d waiting</td>
+<td class="px-3 py-1.5 font-tabular-numeric text-body-sm text-on-surface-variant whitespace-nowrap">Tomorrow</td>
+<td class="px-3 py-1.5 text-center whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm uppercase bg-emerald-100 text-emerald-800 border border-emerald-300">
+                    On track
+                  </span>
+</td>
+<td class="px-3 py-1.5 text-right whitespace-nowrap">
+<button class="h-7 px-2.5 bg-surface-container-lowest border border-outline-variant hover:border-secondary hover:text-secondary text-on-surface text-label-md font-label-md rounded transition-colors inline-flex items-center gap-1 font-semibold">
+<span>Review Case &amp; Chase</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</td>
+</tr>
+<!-- Case 7 (On Track) -->
+<tr class="h-11 bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<td class="px-3 py-1.5 text-center">
+<input class="w-4 h-4 rounded border-outline-variant text-secondary focus:ring-secondary cursor-pointer" type="checkbox">
+</td>
+<td class="px-3 py-1.5">
+<div class="font-title-md text-title-md text-on-surface font-semibold leading-tight">Valence Pharma Holdings UK</div>
+<div class="font-body-sm text-body-sm text-outline">Public Listed • Biotech Manufacturing</div>
+</td>
+<td class="px-3 py-1.5 font-tabular-numeric text-body-md text-on-surface font-medium whitespace-nowrap">NG-2026-8205</td>
+<td class="px-3 py-1.5 text-body-md text-on-surface whitespace-nowrap">Sarah Jenkins</td>
+<td class="px-3 py-1.5 text-right font-tabular-numeric text-body-md text-on-surface font-medium whitespace-nowrap">9d</td>
+<td class="px-3 py-1.5 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-on-surface-variant border border-outline-variant/30">
+                    Chasing Missing Docs
+                  </span>
+</td>
+<td class="px-3 py-1.5 text-center font-tabular-numeric text-body-md font-medium text-on-surface whitespace-nowrap">1 doc</td>
+<td class="px-3 py-1.5 text-right font-tabular-numeric text-body-md text-outline font-medium whitespace-nowrap">3d waiting</td>
+<td class="px-3 py-1.5 font-tabular-numeric text-body-sm text-on-surface-variant whitespace-nowrap">18 Mar 2026</td>
+<td class="px-3 py-1.5 text-center whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm uppercase bg-emerald-100 text-emerald-800 border border-emerald-300">
+                    On track
+                  </span>
+</td>
+<td class="px-3 py-1.5 text-right whitespace-nowrap">
+<button class="h-7 px-2.5 bg-surface-container-lowest border border-outline-variant hover:border-secondary hover:text-secondary text-on-surface text-label-md font-label-md rounded transition-colors inline-flex items-center gap-1 font-semibold">
+<span>Review Case &amp; Chase</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</td>
+</tr>
+<!-- Case 8 (On Track) -->
+<tr class="h-11 bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<td class="px-3 py-1.5 text-center">
+<input class="w-4 h-4 rounded border-outline-variant text-secondary focus:ring-secondary cursor-pointer" type="checkbox">
+</td>
+<td class="px-3 py-1.5">
+<div class="font-title-md text-title-md text-on-surface font-semibold leading-tight">Borealis Agro-Tech Group Inc</div>
+<div class="font-body-sm text-body-sm text-outline">Holding Co • Agriculture Commodities</div>
+</td>
+<td class="px-3 py-1.5 font-tabular-numeric text-body-md text-on-surface font-medium whitespace-nowrap">NG-2026-8199</td>
+<td class="px-3 py-1.5 text-body-md text-on-surface whitespace-nowrap">David Kim</td>
+<td class="px-3 py-1.5 text-right font-tabular-numeric text-body-md text-on-surface font-medium whitespace-nowrap">7d</td>
+<td class="px-3 py-1.5 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-on-surface-variant border border-outline-variant/30">
+                    Document Intake
+                  </span>
+</td>
+<td class="px-3 py-1.5 text-center font-tabular-numeric text-body-md font-medium text-on-surface whitespace-nowrap">5 docs</td>
+<td class="px-3 py-1.5 text-right font-tabular-numeric text-body-md text-outline font-medium whitespace-nowrap">2d waiting</td>
+<td class="px-3 py-1.5 font-tabular-numeric text-body-sm text-on-surface-variant whitespace-nowrap">19 Mar 2026</td>
+<td class="px-3 py-1.5 text-center whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm uppercase bg-emerald-100 text-emerald-800 border border-emerald-300">
+                    On track
+                  </span>
+</td>
+<td class="px-3 py-1.5 text-right whitespace-nowrap">
+<button class="h-7 px-2.5 bg-surface-container-lowest border border-outline-variant hover:border-secondary hover:text-secondary text-on-surface text-label-md font-label-md rounded transition-colors inline-flex items-center gap-1 font-semibold">
+<span>Review Case &amp; Chase</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</td>
+</tr>
+<!-- Case 9 (On Track) -->
+<tr class="h-11 bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<td class="px-3 py-1.5 text-center">
+<input class="w-4 h-4 rounded border-outline-variant text-secondary focus:ring-secondary cursor-pointer" type="checkbox">
+</td>
+<td class="px-3 py-1.5">
+<div class="font-title-md text-title-md text-on-surface font-semibold leading-tight">Apex Frontier Aerospace SARL</div>
+<div class="font-body-sm text-body-sm text-outline">Private Ltd • Avionics Supply</div>
+</td>
+<td class="px-3 py-1.5 font-tabular-numeric text-body-md text-on-surface font-medium whitespace-nowrap">NG-2026-8144</td>
+<td class="px-3 py-1.5 text-body-md text-on-surface whitespace-nowrap">Sarah Jenkins</td>
+<td class="px-3 py-1.5 text-right font-tabular-numeric text-body-md text-on-surface font-medium whitespace-nowrap">6d</td>
+<td class="px-3 py-1.5 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-on-surface-variant border border-outline-variant/30">
+                    Chasing Missing Docs
+                  </span>
+</td>
+<td class="px-3 py-1.5 text-center font-tabular-numeric text-body-md font-medium text-on-surface whitespace-nowrap">2 docs</td>
+<td class="px-3 py-1.5 text-right font-tabular-numeric text-body-md text-outline font-medium whitespace-nowrap">2d waiting</td>
+<td class="px-3 py-1.5 font-tabular-numeric text-body-sm text-on-surface-variant whitespace-nowrap">20 Mar 2026</td>
+<td class="px-3 py-1.5 text-center whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm uppercase bg-emerald-100 text-emerald-800 border border-emerald-300">
+                    On track
+                  </span>
+</td>
+<td class="px-3 py-1.5 text-right whitespace-nowrap">
+<button class="h-7 px-2.5 bg-surface-container-lowest border border-outline-variant hover:border-secondary hover:text-secondary text-on-surface text-label-md font-label-md rounded transition-colors inline-flex items-center gap-1 font-semibold">
+<span>Review Case &amp; Chase</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</td>
+</tr>
+<!-- Case 10 (On Track) -->
+<tr class="h-11 bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<td class="px-3 py-1.5 text-center">
+<input class="w-4 h-4 rounded border-outline-variant text-secondary focus:ring-secondary cursor-pointer" type="checkbox">
+</td>
+<td class="px-3 py-1.5">
+<div class="font-title-md text-title-md text-on-surface font-semibold leading-tight">Helios Nordic Storage BV</div>
+<div class="font-body-sm text-body-sm text-outline">Fund SPV • Cold Storage Infrastructure</div>
+</td>
+<td class="px-3 py-1.5 font-tabular-numeric text-body-md text-on-surface font-medium whitespace-nowrap">NG-2026-8092</td>
+<td class="px-3 py-1.5 text-body-md text-on-surface whitespace-nowrap">Marcus Vance</td>
+<td class="px-3 py-1.5 text-right font-tabular-numeric text-body-md text-on-surface font-medium whitespace-nowrap">5d</td>
+<td class="px-3 py-1.5 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-on-surface-variant border border-outline-variant/30">
+                    Document Intake
+                  </span>
+</td>
+<td class="px-3 py-1.5 text-center font-tabular-numeric text-body-md font-medium text-on-surface whitespace-nowrap">1 doc</td>
+<td class="px-3 py-1.5 text-right font-tabular-numeric text-body-md text-outline font-medium whitespace-nowrap">1d waiting</td>
+<td class="px-3 py-1.5 font-tabular-numeric text-body-sm text-on-surface-variant whitespace-nowrap">21 Mar 2026</td>
+<td class="px-3 py-1.5 text-center whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm uppercase bg-emerald-100 text-emerald-800 border border-emerald-300">
+                    On track
+                  </span>
+</td>
+<td class="px-3 py-1.5 text-right whitespace-nowrap">
+<button class="h-7 px-2.5 bg-surface-container-lowest border border-outline-variant hover:border-secondary hover:text-secondary text-on-surface text-label-md font-label-md rounded transition-colors inline-flex items-center gap-1 font-semibold">
+<span>Review Case &amp; Chase</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</td>
+</tr>
+<!-- Case 11 (On Track) -->
+<tr class="h-11 bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<td class="px-3 py-1.5 text-center">
+<input class="w-4 h-4 rounded border-outline-variant text-secondary focus:ring-secondary cursor-pointer" type="checkbox">
+</td>
+<td class="px-3 py-1.5">
+<div class="font-title-md text-title-md text-on-surface font-semibold leading-tight">Zephyr Global Telecoms Ltd</div>
+<div class="font-body-sm text-body-sm text-outline">Public Listed • Subsea Fiber Optics</div>
+</td>
+<td class="px-3 py-1.5 font-tabular-numeric text-body-md text-on-surface font-medium whitespace-nowrap">NG-2026-8051</td>
+<td class="px-3 py-1.5 text-body-md text-on-surface whitespace-nowrap">Elena Rostova</td>
+<td class="px-3 py-1.5 text-right font-tabular-numeric text-body-md text-on-surface font-medium whitespace-nowrap">3d</td>
+<td class="px-3 py-1.5 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-on-surface-variant border border-outline-variant/30">
+                    Chasing Missing Docs
+                  </span>
+</td>
+<td class="px-3 py-1.5 text-center font-tabular-numeric text-body-md font-medium text-on-surface whitespace-nowrap">3 docs</td>
+<td class="px-3 py-1.5 text-right font-tabular-numeric text-body-md text-outline font-medium whitespace-nowrap">1d waiting</td>
+<td class="px-3 py-1.5 font-tabular-numeric text-body-sm text-on-surface-variant whitespace-nowrap">22 Mar 2026</td>
+<td class="px-3 py-1.5 text-center whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm uppercase bg-emerald-100 text-emerald-800 border border-emerald-300">
+                    On track
+                  </span>
+</td>
+<td class="px-3 py-1.5 text-right whitespace-nowrap">
+<button class="h-7 px-2.5 bg-surface-container-lowest border border-outline-variant hover:border-secondary hover:text-secondary text-on-surface text-label-md font-label-md rounded transition-colors inline-flex items-center gap-1 font-semibold">
+<span>Review Case &amp; Chase</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination & Regulatory Audit Ledger Meta (Responsive stacking) -->
+<div class="p-3 bg-surface-container-low border-t border-outline-variant/40 flex flex-col sm:flex-row items-center justify-between gap-3 text-body-sm">
+<div class="flex flex-wrap items-center gap-2 sm:gap-3 text-center sm:text-left justify-center sm:justify-start">
+<span class="text-outline">Showing <strong class="text-on-surface font-medium">11</strong> of <strong class="text-on-surface font-medium">142</strong> corporate cases</span>
+<span class="text-outline-variant hidden sm:inline">•</span>
+<span class="text-outline flex items-center gap-1 text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 inline-block"></span>
+              Live Sync: Audit Engine Active
+            </span>
+</div>
+<div class="flex items-center gap-1 overflow-x-auto py-0.5">
+<button class="px-2 sm:px-2.5 py-1 text-label-md font-label-md border border-outline-variant bg-surface-container-lowest text-outline rounded hover:text-on-surface disabled:opacity-40" disabled="">
+              Prev
+            </button>
+<button class="px-2 sm:px-2.5 py-1 text-label-md font-label-md bg-secondary text-on-secondary rounded">
+              1
+            </button>
+<button class="px-2 sm:px-2.5 py-1 text-label-md font-label-md border border-outline-variant bg-surface-container-lowest text-on-surface rounded hover:bg-surface-container">
+              2
+            </button>
+<button class="px-2 sm:px-2.5 py-1 text-label-md font-label-md border border-outline-variant bg-surface-container-lowest text-on-surface rounded hover:bg-surface-container">
+              3
+            </button>
+<span class="px-1 text-outline">...</span>
+<button class="px-2 sm:px-2.5 py-1 text-label-md font-label-md border border-outline-variant bg-surface-container-lowest text-on-surface rounded hover:bg-surface-container">
+              13
+            </button>
+<button class="px-2 sm:px-2.5 py-1 text-label-md font-label-md border border-outline-variant bg-surface-container-lowest text-on-surface rounded hover:bg-surface-container">
+              Next
+            </button>
+</div>
+</div>
+</section>
+<!-- BOTTLENECK TRIAGE & QUICK ACTIONS ADVISORY FOOTER DOCK (Stack on mobile, 3-col on md+) -->
+<footer class="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 pt-1">
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded p-3 flex items-start gap-3">
+<div class="p-1.5 bg-surface-container rounded text-secondary flex-shrink-0">
+<span class="material-symbols-outlined" data-icon="outgoing_mail">outgoing_mail</span>
+</div>
+<div>
+<div class="font-label-md text-label-md font-semibold text-on-surface">Direct RM Draft Generation</div>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">Clicking "Chase Selected" stages customized, secure template emails with automated upload tokens.</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded p-3 flex items-start gap-3">
+<div class="p-1.5 bg-surface-container rounded text-secondary flex-shrink-0">
+<span class="material-symbols-outlined" data-icon="policy">policy</span>
+</div>
+<div>
+<div class="font-label-md text-label-md font-semibold text-on-surface">Escalation Thresholds</div>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">Cases with &gt;14 days in UBO Extraction require Chief Compliance Officer endorsement prior to second outreach.</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded p-3 flex items-start gap-3">
+<div class="p-1.5 bg-surface-container rounded text-secondary flex-shrink-0">
+<span class="material-symbols-outlined" data-icon="mark_email_read">mark_email_read</span>
+</div>
+<div>
+<div class="font-label-md text-label-md font-semibold text-on-surface">Zero Auto-Send Guarantee</div>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">Every prompt adheres to banking conduct protocol: No unverified communication leaves this workstation.</p>
+</div>
+</div>
+</footer>
+</main>
+</div>
+
+
+</body></html>

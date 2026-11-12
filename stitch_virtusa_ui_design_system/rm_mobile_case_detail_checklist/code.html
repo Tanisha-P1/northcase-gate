@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Northgate Chase - RM Mobile Case Detail &amp; Checklist</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Inter & JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with Forms and Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration verbatim -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-error-container": "#93000a",
+            "surface-container-low": "#eff4ff",
+            "surface": "#f8f9ff",
+            "on-primary": "#ffffff",
+            "inverse-primary": "#b7c4ff",
+            "secondary-fixed-dim": "#bec5e5",
+            "on-surface-variant": "#434655",
+            "on-primary-fixed-variant": "#0039b5",
+            "primary-container": "#1d4ed8",
+            "on-error": "#ffffff",
+            "outline": "#747686",
+            "surface-container-highest": "#d3e4fe",
+            "on-secondary-fixed-variant": "#3e4660",
+            "error": "#ba1a1a",
+            "on-primary-fixed": "#001551",
+            "tertiary-fixed": "#6ffbbe",
+            "surface-tint": "#2151da",
+            "tertiary-container": "#006a48",
+            "on-tertiary-fixed-variant": "#005236",
+            "primary-fixed-dim": "#b7c4ff",
+            "surface-container-lowest": "#ffffff",
+            "primary-fixed": "#dce1ff",
+            "tertiary": "#004f35",
+            "on-tertiary-fixed": "#002113",
+            "secondary-container": "#d8deff",
+            "inverse-surface": "#213145",
+            "surface-variant": "#d3e4fe",
+            "surface-container": "#e5eeff",
+            "outline-variant": "#c4c5d7",
+            "secondary-fixed": "#dbe1ff",
+            "on-surface": "#0b1c30",
+            "error-container": "#ffdad6",
+            "on-secondary-fixed": "#131a33",
+            "on-secondary": "#ffffff",
+            "surface-container-high": "#dce9ff",
+            "on-tertiary": "#ffffff",
+            "background": "#f8f9ff",
+            "tertiary-fixed-dim": "#4edea3",
+            "primary": "#0037b0",
+            "surface-bright": "#f8f9ff",
+            "surface-dim": "#cbdbf5",
+            "inverse-on-surface": "#eaf1ff",
+            "secondary": "#565d79",
+            "on-primary-container": "#cad3ff",
+            "on-secondary-container": "#5a627e",
+            "on-tertiary-container": "#60eeb1",
+            "on-background": "#0b1c30"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "margin-tablet": "1.5rem",
+            "space-md": "0.75rem",
+            "space-sm": "0.5rem",
+            "space-xl": "1.5rem",
+            "margin": "1rem",
+            "gutter": "1rem",
+            "space-lg": "1rem",
+            "space-xs": "0.25rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Inter"],
+            "label-md": ["Inter"],
+            "data-mono": ["JetBrains Mono"],
+            "headline-sm": ["Inter"],
+            "label-sm": ["Inter"],
+            "title-md": ["Inter"],
+            "display-lg": ["Inter"],
+            "body-sm": ["Inter"],
+            "body-md": ["Inter"],
+            "headline-lg": ["Inter"]
+          },
+          "fontSize": {
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "data-mono": ["14px", { "lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "title-md": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased font-body-md text-body-md flex justify-center min-h-screen">
+<!-- Mobile Viewport Container (Fixed width 390px iPhone form-factor) -->
+<div class="w-full max-w-[390px] min-h-screen bg-background flex flex-col relative pb-36 shadow-2xl border-x border-outline-variant">
+<!-- Top Status Bar Simulation -->
+<div class="w-full h-11 px-margin flex items-center justify-between bg-surface-container-lowest text-on-surface select-none pt-2 z-40">
+<span class="font-data-mono text-body-sm font-semibold tracking-tight">09:41</span>
+<div class="flex items-center space-x-1.5 text-on-surface">
+<span class="material-symbols-outlined text-[16px]">signal_cellular_4_bar</span>
+<span class="material-symbols-outlined text-[16px]">wifi</span>
+<span class="material-symbols-outlined text-[18px]">battery_full</span>
+</div>
+</div>
+<!-- Top App Bar Component -->
+<header class="bg-surface-container-lowest text-primary shadow-sm border-b border-outline-variant flex justify-between items-center w-full px-margin h-14 sticky top-0 z-30">
+<div class="flex items-center space-x-3">
+<button aria-label="Back to Queue" class="w-11 h-11 flex items-center justify-center rounded-lg text-secondary hover:bg-surface-container transition-colors duration-150 active:scale-95" type="button">
+<span class="material-symbols-outlined text-[22px]">arrow_back</span>
+</button>
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-[20px] text-primary" data-icon="shield">shield</span>
+<span class="text-title-md font-title-md font-bold tracking-tight text-on-surface">Northgate Chase</span>
+</div>
+</div>
+<div class="flex items-center space-x-1">
+<button aria-label="Notifications" class="w-11 h-11 flex items-center justify-center rounded-lg text-secondary hover:bg-surface-container transition-colors duration-150 active:scale-95" type="button">
+<span class="material-symbols-outlined text-[22px]" data-icon="notifications">notifications</span>
+</button>
+<button aria-label="Case Options Menu" class="w-11 h-11 flex items-center justify-center rounded-lg text-secondary hover:bg-surface-container transition-colors duration-150 active:scale-95" type="button">
+<span class="material-symbols-outlined text-[22px]">more_vert</span>
+</button>
+</div>
+</header>
+<!-- Sub-header Breadcrumb / Case Context -->
+<section class="bg-surface-container-lowest px-margin py-3 border-b border-outline-variant">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<span class="font-data-mono text-label-sm text-primary font-semibold bg-surface-container-low px-2 py-0.5 rounded border border-secondary-container">NG-2026-8812</span>
+<span class="text-label-sm font-label-sm text-secondary">Corp KYC Tier-1</span>
+</div>
+<div class="flex items-center space-x-1 text-secondary">
+<span class="material-symbols-outlined text-[14px]">account_circle</span>
+<span class="text-label-sm font-label-sm">Sarah Jenkins (RM)</span>
+</div>
+</div>
+<h1 class="text-headline-sm font-headline-sm text-on-surface mt-1.5 leading-snug">
+        Meridian Horizon Shipping Ltd
+      </h1>
+</section>
+<!-- Main Content Stream -->
+<main class="flex-1 px-margin pt-space-lg space-y-4">
+<!-- Entity Summary Card (Level 0 with left accent stroke) -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-4 relative overflow-hidden shadow-none border-l-4 border-l-amber-600">
+<div class="flex items-start justify-between">
+<div>
+<span class="text-label-sm font-label-sm text-secondary uppercase tracking-wider">Corporate Structure</span>
+<p class="font-body-md text-body-md text-on-surface font-semibold mt-0.5">Private Limited • Maritime Logistics</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant flex items-center mt-0.5">
+<span class="material-symbols-outlined text-[13px] mr-1 text-secondary">public</span>
+              UK / Cyprus Cross-Border Fleet Ops
+            </p>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm font-label-sm font-semibold bg-amber-50 text-amber-800 border border-amber-200">
+            34d Open
+          </span>
+</div>
+<!-- Telemetry Metrics Grid -->
+<div class="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-outline-variant">
+<div class="bg-surface-container-low p-2 rounded-lg border border-secondary-container/50">
+<span class="text-label-sm font-label-sm text-secondary block">Current Stage</span>
+<span class="font-body-sm text-body-sm font-semibold text-primary flex items-center mt-0.5">
+<span class="material-symbols-outlined text-[15px] mr-1 text-primary">pending_actions</span>
+              Chasing Missing Docs
+            </span>
+</div>
+<div class="bg-surface-container-low p-2 rounded-lg border border-secondary-container/50">
+<span class="text-label-sm font-label-sm text-secondary block">Risk Rating</span>
+<span class="font-body-sm text-body-sm font-semibold text-on-surface flex items-center mt-0.5">
+<span class="material-symbols-outlined text-[15px] mr-1 text-amber-600">warning</span>
+              High (Sanctions Proximity)
+            </span>
+</div>
+</div>
+<!-- Primary Corporate Contact Row -->
+<div class="mt-3 pt-3 border-t border-outline-variant flex items-center justify-between">
+<div class="flex items-center space-x-2.5">
+<div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-primary font-semibold text-label-md">
+              AV
+            </div>
+<div>
+<p class="text-body-sm font-body-sm font-semibold text-on-surface">Alistair Vane</p>
+<p class="text-label-sm font-label-sm text-secondary">Managing Director &amp; Key UBO</p>
+</div>
+</div>
+<div class="flex items-center space-x-1">
+<a aria-label="Direct Call Alistair Vane" class="w-11 h-11 flex items-center justify-center rounded-lg text-primary hover:bg-surface-container transition-colors duration-150 active:scale-95" href="tel:+442079460192">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</a>
+<a aria-label="Email Alistair Vane" class="w-11 h-11 flex items-center justify-center rounded-lg text-primary hover:bg-surface-container transition-colors duration-150 active:scale-95" href="mailto:a.vane@meridianhorizon.com">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</a>
+</div>
+</div>
+<!-- Institutional Safeguard Callout -->
+<div class="mt-3 bg-surface-container/60 rounded p-2.5 flex items-start space-x-2 border border-outline-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">verified_user</span>
+<p class="text-label-sm font-label-sm text-on-surface-variant leading-tight">
+<strong class="font-semibold text-on-surface">Institutional Safeguard:</strong> Drafts require RM verification before client dispatch. No auto-send enabled.
+          </p>
+</div>
+</section>
+<!-- Downstream Blocker Warning Banner -->
+<section class="bg-[#FFF8F6] rounded-xl border border-red-200 p-3.5 relative overflow-hidden shadow-sm">
+<div class="flex items-start space-x-3">
+<div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center text-red-700 shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">lock_clock</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<h2 class="text-body-md font-body-md font-semibold text-red-950">
+                UBO Extraction &amp; PEP Screening Blocked
+              </h2>
+</div>
+<p class="text-body-sm font-body-sm text-red-900/80 mt-1 leading-snug">
+              KYC Analyst <span class="font-semibold text-red-950">Liam Chen</span> has been halted for <strong class="font-semibold text-red-950">22 days</strong> awaiting Certified Group Org Chart.
+            </p>
+<div class="mt-2.5 flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-red-800 font-data-mono">Impact: SLA Breach in 48h</span>
+<button class="inline-flex items-center px-3 py-1.5 bg-red-700 hover:bg-red-800 text-on-primary rounded text-label-sm font-label-sm font-semibold active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined text-[14px] mr-1">bolt</span>
+                Expedite Chase
+              </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Section Title & Overview Filters -->
+<div class="pt-1 flex items-center justify-between">
+<h2 class="text-title-md font-title-md text-on-surface font-bold">Document Checklist</h2>
+<span class="text-label-sm font-label-sm text-secondary">3 Overdue • 3 Verified</span>
+</div>
+<!-- Categorized Document Checklist -->
+<div class="space-y-3">
+<!-- CATEGORY 1: Ownership & UBO (Critical) -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden">
+<div class="bg-surface-container px-3.5 py-2.5 flex items-center justify-between border-b border-outline-variant">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-[18px] text-error">folder_supervised</span>
+<span class="text-label-md font-label-md text-on-surface font-bold">1. Ownership &amp; UBO</span>
+</div>
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm font-bold bg-red-100 text-red-800">
+              1 Critical
+            </span>
+</div>
+<div class="p-3.5">
+<div class="flex items-start justify-between">
+<div class="pr-2">
+<h3 class="text-body-md font-body-md font-semibold text-on-surface">
+                  Certified Group Org Chart (&gt;25% UBOs)
+                </h3>
+<p class="text-label-sm font-label-sm text-secondary mt-0.5">
+                  Must be signed by regulated audit partner with wet-ink stamp.
+                </p>
+<div class="mt-2 flex flex-wrap items-center gap-1.5">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm font-semibold bg-[#FFF1F2] text-[#BE123C] border border-red-200">
+<span class="w-1.5 h-1.5 rounded-full bg-[#BE123C] mr-1.5"></span>
+                    Overdue (Round 2 of 3)
+                  </span>
+<span class="text-label-sm font-label-sm text-secondary">
+                    Owner: <span class="font-medium text-on-surface">Alistair Vane</span>
+</span>
+</div>
+</div>
+</div>
+<div class="mt-3 pt-3 border-t border-outline-variant flex items-center justify-between">
+<div class="flex items-center text-label-sm font-label-sm text-secondary">
+<span class="material-symbols-outlined text-[15px] mr-1 text-secondary">history</span>
+                Last reminded: 4 days ago
+              </div>
+<button class="h-9 px-3 bg-surface-container hover:bg-surface-container-high text-primary border border-primary/20 rounded font-label-sm text-label-sm font-semibold flex items-center active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[14px] mr-1">send</span>
+                Draft Reminder
+              </button>
+</div>
+</div>
+</div>
+<!-- CATEGORY 2: Constitutional Documents (2 items) -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden">
+<div class="bg-surface-container px-3.5 py-2.5 flex items-center justify-between border-b border-outline-variant">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-[18px] text-primary">article</span>
+<span class="text-label-md font-label-md text-on-surface font-bold">2. Constitutional Documents</span>
+</div>
+<span class="text-label-sm font-label-sm text-secondary">2 items</span>
+</div>
+<!-- Item 2.1: Overdue -->
+<div class="p-3.5 border-b border-outline-variant">
+<div class="flex items-start justify-between">
+<div>
+<h3 class="text-body-md font-body-md font-semibold text-on-surface">
+                  Articles of Association &amp; Memorandum
+                </h3>
+<p class="text-label-sm font-label-sm text-secondary mt-0.5">
+                  Consolidated amended copy including Cypriot subsidiary clauses.
+                </p>
+<div class="mt-2 flex items-center space-x-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm font-semibold bg-[#FFF1F2] text-[#BE123C] border border-red-200">
+                    Overdue (16d) • Round 2
+                  </span>
+</div>
+</div>
+<button aria-label="Quick remind Articles" class="w-10 h-10 flex items-center justify-center text-primary rounded-lg hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">edit_note</span>
+</button>
+</div>
+</div>
+<!-- Item 2.2: Received -->
+<div class="p-3.5 bg-surface/50">
+<div class="flex items-start justify-between">
+<div>
+<h3 class="text-body-md font-body-md font-medium text-on-surface">
+                  Certificate of Incorporation
+                </h3>
+<p class="text-label-sm font-label-sm text-secondary mt-0.5 font-data-mono">
+                  Doc Ref: COI-UK-9920194A
+                </p>
+<div class="mt-2 flex items-center space-x-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm font-semibold bg-[#ECFDF5] text-[#047857] border border-emerald-200">
+<span class="material-symbols-outlined text-[13px] mr-1">check_circle</span>
+                    Received (Verified 12 Feb)
+                  </span>
+</div>
+</div>
+<button aria-label="View Certificate" class="w-10 h-10 flex items-center justify-center text-secondary rounded-lg hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+</div>
+<!-- CATEGORY 3: Registry Extracts (1 item) -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden">
+<div class="bg-surface-container px-3.5 py-2.5 flex items-center justify-between border-b border-outline-variant">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-[18px] text-primary">business</span>
+<span class="text-label-md font-label-md text-on-surface font-bold">3. Registry Extracts</span>
+</div>
+<span class="text-label-sm font-label-sm text-amber-700 font-semibold">1 Actionable</span>
+</div>
+<div class="p-3.5">
+<div class="flex items-start justify-between">
+<div>
+<h3 class="text-body-md font-body-md font-semibold text-on-surface">
+                  Official Companies House Extract
+                </h3>
+<p class="text-label-sm font-label-sm text-secondary mt-0.5">
+                  Must be certified &amp; issued within the last 30 days.
+                </p>
+<div class="mt-2 flex items-center space-x-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm font-semibold bg-[#FFF1F2] text-[#BE123C] border border-red-200">
+                    Overdue (18d) • Round 2
+                  </span>
+</div>
+</div>
+<button aria-label="Quick remind Registry Extract" class="w-10 h-10 flex items-center justify-center text-primary rounded-lg hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">edit_note</span>
+</button>
+</div>
+</div>
+</div>
+<!-- CATEGORY 4: Authorised Signatories (2 items - All Verified) -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden">
+<div class="bg-surface-container px-3.5 py-2.5 flex items-center justify-between border-b border-outline-variant">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-[18px] text-tertiary-container">draw</span>
+<span class="text-label-md font-label-md text-on-surface font-bold">4. Authorised Signatories</span>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm font-semibold bg-[#ECFDF5] text-[#047857]">
+              Complete (2/2)
+            </span>
+</div>
+<!-- Item 4.1 -->
+<div class="p-3.5 border-b border-outline-variant bg-surface/50">
+<div class="flex items-start justify-between">
+<div>
+<h3 class="text-body-md font-body-md font-medium text-on-surface">
+                  Passport Copies (2 Directors)
+                </h3>
+<p class="text-label-sm font-label-sm text-secondary mt-0.5">
+                  A. Vane &amp; M. Rostova (Biometrics Verified)
+                </p>
+<div class="mt-1.5 flex items-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm font-semibold bg-[#ECFDF5] text-[#047857]">
+<span class="material-symbols-outlined text-[13px] mr-1">check_circle</span>
+                    Received
+                  </span>
+</div>
+</div>
+<button aria-label="View Director Passports" class="w-10 h-10 flex items-center justify-center text-secondary rounded-lg hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<!-- Item 4.2 -->
+<div class="p-3.5 bg-surface/50">
+<div class="flex items-start justify-between">
+<div>
+<h3 class="text-body-md font-body-md font-medium text-on-surface">
+                  Board Resolution for Account Opening
+                </h3>
+<p class="text-label-sm font-label-sm text-secondary mt-0.5">
+                  Signed Minute Extract dated Jan 14, 2026
+                </p>
+<div class="mt-1.5 flex items-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm font-semibold bg-[#ECFDF5] text-[#047857]">
+<span class="material-symbols-outlined text-[13px] mr-1">check_circle</span>
+                    Received
+                  </span>
+</div>
+</div>
+<button aria-label="View Board Resolution" class="w-10 h-10 flex items-center justify-center text-secondary rounded-lg hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Sticky Case Operational Action Trigger (Level 1 Elevation) -->
+<div class="fixed bottom-16 left-0 right-0 max-w-[390px] mx-auto bg-surface-container-lowest/95 backdrop-blur-md border-t border-outline-variant px-margin py-2.5 z-40 shadow-[0_-4px_12px_rgba(11,19,43,0.06)]">
+<button class="w-full h-12 bg-primary-container hover:bg-primary text-on-primary rounded-xl font-label-md text-title-md flex items-center justify-center space-x-2 font-semibold shadow-sm active:scale-[0.98] transition-all" type="button">
+<span class="material-symbols-outlined text-[20px]">mark_email_unread</span>
+<span>Chase All 3 Overdue Items</span>
+</button>
+<p class="text-center text-[10px] text-secondary mt-1">Pre-populates RM compliant formal prompt for Alistair Vane</p>
+</div>
+<!-- Bottom Navigation Bar (Persistent Shared Component) -->
+<!-- Active State Logic: In this RM Case Detail within the corporate pipeline, 'Queue' represents the operational case pipeline destination -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-space-xs h-16 max-w-[390px] mx-auto bg-surface-container-lowest text-primary shadow-sm border-t border-outline-variant">
+<!-- Destination 1: Queue (Active) -->
+<a class="flex flex-col items-center justify-center text-primary font-semibold min-h-[44px] flex-1 hover:text-primary transition-colors duration-150 active:scale-95" href="#queue">
+<span class="material-symbols-outlined text-[22px]" data-icon="assignment">assignment</span>
+<span class="text-label-sm font-label-sm mt-0.5">Queue</span>
+</a>
+<!-- Destination 2: Urgent -->
+<a class="flex flex-col items-center justify-center text-secondary min-h-[44px] flex-1 hover:text-primary transition-colors duration-150 active:scale-95" href="#urgent">
+<span class="material-symbols-outlined text-[22px]" data-icon="error_outline">error_outline</span>
+<span class="text-label-sm font-label-sm mt-0.5">Urgent</span>
+</a>
+<!-- Destination 3: Compose -->
+<a class="flex flex-col items-center justify-center text-secondary min-h-[44px] flex-1 hover:text-primary transition-colors duration-150 active:scale-95" href="#compose">
+<span class="material-symbols-outlined text-[22px]" data-icon="send">send</span>
+<span class="text-label-sm font-label-sm mt-0.5">Compose</span>
+</a>
+<!-- Destination 4: Analytics -->
+<a class="flex flex-col items-center justify-center text-secondary min-h-[44px] flex-1 hover:text-primary transition-colors duration-150 active:scale-95" href="#analytics">
+<span class="material-symbols-outlined text-[22px]" data-icon="analytics">analytics</span>
+<span class="text-label-sm font-label-sm mt-0.5">Analytics</span>
+</a>
+<!-- Destination 5: Profile -->
+<a class="flex flex-col items-center justify-center text-secondary min-h-[44px] flex-1 hover:text-primary transition-colors duration-150 active:scale-95" href="#profile">
+<span class="material-symbols-outlined text-[22px]" data-icon="person">person</span>
+<span class="text-label-sm font-label-sm mt-0.5">Profile</span>
+</a>
+</nav>
+</div>
+</body></html>
