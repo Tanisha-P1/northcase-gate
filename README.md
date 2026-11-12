@@ -49,6 +49,22 @@ To run a built deployment, first build the frontend with `npm run build`, then r
 
 On a non-Windows development machine, activate `.venv` using that platform’s standard virtual-environment activation command before `npm run dev`.
 
+## Docker
+
+Build and run the complete application (frontend, Node API, and private Python AI service) in one container:
+
+```powershell
+docker build -t northgate-chase .
+docker run --rm -p 8080:8080 `
+  -e AI_SERVICE_TOKEN=replace-with-a-private-random-value `
+  -e GEMINI_API_KEY=replace-with-your-gemini-api-key `
+  northgate-chase
+```
+
+Open `http://localhost:8080`. The Node API listens on the container interface on port `8080`; the AI service remains private to the container on loopback. Do not put actual API keys in the Dockerfile, image, or command history. Supply them through a local secret manager or your deployment platform's secret integration instead. The container uses `/tmp/northgate.sqlite` by default, which is **ephemeral**: changes can be lost when a container restarts or is replaced. Do not use this configuration for durable data. Before a durable Cloud Run deployment, migrate both the Node workflow API and Python assistant from SQLite to Cloud SQL for PostgreSQL.
+
+The GitHub Actions workflow at `.github/workflows/container-ci.yml` runs the Node and Python test suites, frontend build and lint, and a Docker image build on pushes to `main` and pull requests. After the Google Cloud and GitHub configuration in [GCP deployment](./docs/gcp-deployment.md) is complete, successful pushes to `main` also publish to Artifact Registry and deploy a **public synthetic-data preview** to Cloud Run. This preview uses temporary SQLite storage and is not for real or durable case data. Migrate both the Node workflow API and Python assistant to Cloud SQL for PostgreSQL before using persistent data.
+
 ## Demo roles
 
 Use the role selector in the top bar to switch among the demo RM, Ops Coordinator, KYC Analyst, and COO views. RMs can see and approve reminders only for their assigned cases. Ops can see the full queue and prepare drafts. Analysts can review linked handoffs. COO analytics are aggregate-only. This role selector demonstrates workflow scoping; it is not production authentication.

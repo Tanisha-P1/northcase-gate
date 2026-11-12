@@ -17,6 +17,7 @@ const configuredDatabasePath = process.env.NG_DATABASE_PATH ?? './northgate.sqli
 const databasePath = configuredDatabasePath === ':memory:'
   ? configuredDatabasePath
   : resolve(configuredDatabasePath)
+const host = process.env.HOST ?? '127.0.0.1'
 const db = createDatabase(databasePath)
 const server = createApiServer({ db, overdueDays })
 const scheduler = setInterval(() => {
@@ -28,8 +29,8 @@ const scheduler = setInterval(() => {
   }
 }, 15_000)
 
-server.listen(port, '127.0.0.1', () => {
-  console.info(`Northgate Chase API listening on http://127.0.0.1:${port}`)
+server.listen(port, host, () => {
+  console.info(`Northgate Chase API listening on http://${host}:${port}`)
   console.info(`SQLite database: ${databasePath}`)
   console.info('Synthetic data only. No real emails are sent.')
 })

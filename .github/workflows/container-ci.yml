@@ -1,0 +1,120 @@
+name: Container CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Install Python test dependencies
+        run: python -m pip install -r ai_service/requirements-dev.txt
+
+      - name: Run Node tests
+        run: npm test
+
+      - name: Run AI service tests
+        run: npm run test:ai
+
+      - name: Build frontend
+        run: npm run build
+
+      - name: Lint frontend
+        run: npm run lint
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build production image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: false
+
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.GCP_PROJECT_ID != '' && vars.GCP_REGION != '' && vars.GCP_WORKLOAD_IDENTITY_PROVIDER != '' && vars.GCP_DEPLOYER_SERVICE_ACCOUNT != '' && vars.GCP_RUNTIME_SERVICE_ACCOUNT != ''
+    needs: test-and-build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    concurrency:
+      group: northgate-cloud-run
+      cancel-in-progress: false
+    env:
+      PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
+      REGION: ${{ vars.GCP_REGION }}
+      DEPLOYER_SERVICE_ACCOUNT: ${{ vars.GCP_DEPLOYER_SERVICE_ACCOUNT }}
+      RUNTIME_SERVICE_ACCOUNT: ${{ vars.GCP_RUNTIME_SERVICE_ACCOUNT }}
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_DEPLOYER_SERVICE_ACCOUNT }}
+
+      - name: Set up Google Cloud CLI
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: ${{ vars.GCP_PROJECT_ID }}
+
+      - name: Configure Artifact Registry authentication
+        run: gcloud auth configure-docker "${REGION}-docker.pkg.dev" --quiet
+
+      - name: Build and publish image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ vars.GCP_REGION }}-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/northgate/northgate-chase:${{ github.sha }}
+
+      - name: Deploy public synthetic-data preview
+        run: |
+          gcloud run deploy northgate-chase \
+            --project="$PROJECT_ID" \
+            --region="$REGION" \
+            --platform=managed \
+            --image="${REGION}-docker.pkg.dev/${PROJECT_ID}/northgate/northgate-chase:${GITHUB_SHA}" \
+            --port=8080 \
+            --memory=1Gi \
+            --cpu=1 \
+            --max=1 \
+            --min=0 \
+            --concurrency=1 \
+            --service-account="$RUNTIME_SERVICE_ACCOUNT" \
+            --allow-unauthenticated \
+            --set-env-vars=NG_OVERDUE_DAYS=7
+
+      - name: Report deployment URL
+        run: |
+          SERVICE_URL="$(gcloud run services describe northgate-chase \
+            --project="$PROJECT_ID" \
+            --region="$REGION" \
+            --format='value(status.url)')"
+          echo "Deployed public synthetic-data preview: ${SERVICE_URL}" >> "$GITHUB_STEP_SUMMARY"
